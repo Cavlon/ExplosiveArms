@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Bullet
+  - EnemyBullet
+  - FirePoint
+  - Camera
+  - Explosion
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Entity
+  - Obstacles
+  - Enemy
+  - Background
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Trail
+    uniqueID: 2927230701
+    locked: 0
+  - name: Entity
+    uniqueID: 304012941
+    locked: 0
+  - name: Effect
+    uniqueID: 687047821
+    locked: 0
+  - name: HigherTiles
+    uniqueID: 2748443001
+    locked: 0
