@@ -26,7 +26,7 @@ public class WeaponDrops : MonoBehaviour
         int randomChance = Random.Range(0, 101);
         if (randomChance < probabilityWindow)
         {
-            Instantiate(availableWeapons[Random.Range(0, availableWeapons.Count)], enemyPos.position, Quaternion.identity);
+            Instantiate(availableWeapons[Random.Range(0, availableWeapons.Count)], enemyPos.position, Quaternion.Euler(new Vector3(0, 0, Random.Range(0f, 360f))));
             droppedGuns += 1;
         }
     }
