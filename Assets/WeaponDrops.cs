@@ -34,7 +34,6 @@ public class WeaponDrops : MonoBehaviour
     private void probability()
     {
         probabilityWindow = Mathf.RoundToInt((float)(100 * (0.6 / (droppedGuns + 1))));
-        print(probabilityWindow);
     }
 
     public void deadEnemy(Transform enemyPos)

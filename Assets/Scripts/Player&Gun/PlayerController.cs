@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float health;
-    public Camera cam;
+    public int health;
+    public int maxHealth;
+    [SerializeField] protected HealthUI healthUI;
+
     private PlayerMovement movement;
     private BulletController bullet;
     private Rigidbody2D rb;
@@ -15,7 +17,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         movement = GetComponent<PlayerMovement>();
-        cam = Camera.main;
+        healthUI.playerCont = this;
+        healthUI.UpdateHealth();
     }
 
     // Update is called once per frame
@@ -31,6 +34,7 @@ public class PlayerController : MonoBehaviour
             movement.knockback = true;
             bullet = collision.gameObject.GetComponent<BulletController>();
             health -= bullet.damage;
+            healthUI.UpdateHealth();
             rb.AddForce(bullet.dir * bullet.thrust, ForceMode2D.Impulse);
             Destroy(bullet.gameObject);
             BulletController[] bullets = FindObjectsOfType<BulletController>();
@@ -43,8 +47,10 @@ public class PlayerController : MonoBehaviour
         {
             movement.knockback = true;
             Explosion explosion = collision.gameObject.GetComponent<Explosion>();
-            health -= explosion.damage;
+            health -= 1;
+            healthUI.UpdateHealth();
             Vector2 dir = transform.position - collision.gameObject.transform.position;
+            dir = dir.normalized;
             rb.AddForce(dir * explosion.thrust, ForceMode2D.Impulse);
         }
     }
