@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         movement = GetComponent<PlayerMovement>();
         healthUI.playerCont = this;
+        healthUI.getImages();
         healthUI.UpdateHealth();
     }
 

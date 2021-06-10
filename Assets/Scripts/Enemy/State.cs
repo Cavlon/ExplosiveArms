@@ -1,17 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-public abstract class State
+﻿public abstract class State
 {
-    protected Enemy enemy;
+    //protected EnemyController enemy;
 
     public abstract void Tick();
 
     public virtual void OnStateEnter() { }
     public virtual void OnStateExit() { }
 
-    public State(Enemy enemy)
+    /*public State(EnemyController enemy)
     {
         this.enemy = enemy;
-    }
+    }*/
 }

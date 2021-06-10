@@ -1,13 +1,22 @@
 fileFormatVersion: 2
-guid: aa860420a6ffbcc46a1ef6a7962f2615
+guid: d67e30f3a66d282458a812e7aaf891cd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5406601942069425368
-    second: HeartAnim_0
+      213: 8670299206234523915
+    second: Seedling_RageFront_0
   - first:
-      213: 8286810884624740168
-    second: HeartAnim_1
+      213: -2270546929031348503
+    second: Seedling_RageFront_1
+  - first:
+      213: 8180598412155662080
+    second: Seedling_RageFront_2
+  - first:
+      213: 2229994759690059949
+    second: Seedling_RageFront_3
+  - first:
+      213: 4165322985880040434
+    second: Seedling_RageFront_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -52,7 +61,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,43 +118,126 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HeartAnim_0
+      name: Seedling_RageFront_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 18
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: 8.5}
+        - {x: -8, y: -12.5}
+        - {x: 8, y: -12.5}
+        - {x: 8, y: 8.5}
       tessellationDetail: 0
       bones: []
-      spriteID: 8d43cf622db180b40800000000000000
-      internalID: 5406601942069425368
+      spriteID: b09c5fbd037135870800000000000000
+      internalID: 8670299206234523915
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HeartAnim_1
+      name: Seedling_RageFront_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 18
         y: 0
-        width: 32
-        height: 32
+        width: 18
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: 8.5}
+        - {x: -8, y: -12.5}
+        - {x: 8, y: -12.5}
+        - {x: 8, y: 8.5}
       tessellationDetail: 0
       bones: []
-      spriteID: 84fe5ea189aa00370800000000000000
-      internalID: 8286810884624740168
+      spriteID: 9ee7b3119956d70e0800000000000000
+      internalID: -2270546929031348503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Seedling_RageFront_2
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 0
+        width: 18
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: 8.5}
+        - {x: -8, y: -12.5}
+        - {x: 8, y: -12.5}
+        - {x: 8, y: 8.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00fa9a6c9e2578170800000000000000
+      internalID: 8180598412155662080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Seedling_RageFront_3
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 0
+        width: 18
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: 8.5}
+        - {x: -8, y: -12.5}
+        - {x: 8, y: -12.5}
+        - {x: 8, y: 8.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: da00f4e3b6882fe10800000000000000
+      internalID: 2229994759690059949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Seedling_RageFront_4
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 18
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: 8.5}
+        - {x: -8, y: -12.5}
+        - {x: 8, y: -12.5}
+        - {x: 8, y: 8.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f33624df233ec930800000000000000
+      internalID: 4165322985880040434
       vertices: []
       indices: 
       edges: []

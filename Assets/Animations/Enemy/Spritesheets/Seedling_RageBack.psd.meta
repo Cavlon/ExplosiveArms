@@ -1,13 +1,19 @@
 fileFormatVersion: 2
-guid: aa860420a6ffbcc46a1ef6a7962f2615
+guid: 632358d3aeed79f439284eefbfd3f877
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5406601942069425368
-    second: HeartAnim_0
+      213: -9138500830243648798
+    second: Seedling_RageBack_0
   - first:
-      213: 8286810884624740168
-    second: HeartAnim_1
+      213: 5138936522081483956
+    second: Seedling_RageBack_1
+  - first:
+      213: -5257829092969216882
+    second: Seedling_RageBack_2
+  - first:
+      213: 1148197979657556351
+    second: Seedling_RageBack_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -52,7 +58,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,43 +115,101 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HeartAnim_0
+      name: Seedling_RageBack_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 18
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: 8.5}
+        - {x: -8, y: -12.5}
+        - {x: 8, y: -12.5}
+        - {x: 8, y: 8.5}
       tessellationDetail: 0
       bones: []
-      spriteID: 8d43cf622db180b40800000000000000
-      internalID: 5406601942069425368
+      spriteID: 2ea07b9a9e58d2180800000000000000
+      internalID: -9138500830243648798
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HeartAnim_1
+      name: Seedling_RageBack_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 18
         y: 0
-        width: 32
-        height: 32
+        width: 18
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: 8.5}
+        - {x: -8, y: -12.5}
+        - {x: 8, y: -12.5}
+        - {x: 8, y: 8.5}
       tessellationDetail: 0
       bones: []
-      spriteID: 84fe5ea189aa00370800000000000000
-      internalID: 8286810884624740168
+      spriteID: 4bcb2f12a8b215740800000000000000
+      internalID: 5138936522081483956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Seedling_RageBack_2
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 0
+        width: 18
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: 8.5}
+        - {x: -8, y: -12.5}
+        - {x: 8, y: -12.5}
+        - {x: 8, y: 8.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e840bdf0c407807b0800000000000000
+      internalID: -5257829092969216882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Seedling_RageBack_3
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 0
+        width: 18
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: 8.5}
+        - {x: -8, y: -12.5}
+        - {x: 8, y: -12.5}
+        - {x: 8, y: 8.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f715f45aaf73fef00800000000000000
+      internalID: 1148197979657556351
       vertices: []
       indices: 
       edges: []

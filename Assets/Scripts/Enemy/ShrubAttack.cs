@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AttackState : State
+public class ShrubAttack : State
 {
+    private Shrub enemy;
     private float distance;
     private float stoppingDistance;
     private float retreatDistance;
@@ -13,7 +12,10 @@ public class AttackState : State
     private int circleDir;
     private EnemyGun gun;
 
-    public AttackState(Enemy enemy) : base(enemy) { }
+    public ShrubAttack(Shrub enemy) 
+    {
+        this.enemy = enemy;
+    }
 
     public override void Tick()
     {
@@ -22,23 +24,17 @@ public class AttackState : State
         {
             trans.position = Vector2.MoveTowards(trans.position, playerTrans.position, speed * Time.deltaTime);
         }
-        else if (distance < stoppingDistance && distance > retreatDistance)
-        {
-            if (circleDir != 0)
-            {
-                var initialRotation = trans.rotation;
-                trans.RotateAround(playerTrans.position, Vector3.forward, speed * 4 * circleDir * Time.deltaTime);
-                trans.rotation = initialRotation;
-            }
+        else if (distance < stoppingDistance && distance > retreatDistance && circleDir != 0)
+        {            
+            var initialRotation = trans.rotation;
+            trans.RotateAround(playerTrans.position, Vector3.forward, speed * 4 * circleDir * Time.deltaTime);
+            trans.rotation = initialRotation;            
         }
         else if (distance < retreatDistance)
         {
             trans.position = Vector2.MoveTowards(trans.position, playerTrans.position, -speed * Time.deltaTime);
         }
-        if (enemy.CanSeePlayerCollision(trans) == false)
-        {
-            enemy.SetState(new ChaseState(enemy));
-        } else
+        if (enemy.CanSeePlayerCollision(trans))
         {
             gun.canShoot = true;
         }
@@ -47,10 +43,11 @@ public class AttackState : State
 
     public override void OnStateEnter()
     {
+        enemy.transTime = 20;
         stoppingDistance = enemy.stoppingDistance;
         retreatDistance = enemy.retreatDistance;
         playerTrans = enemy.playerTrans;
-        trans = enemy.transform;
+        trans = enemy.trans;
         speed = enemy.speed;
         circleDir = Random.Range(-1, 2);
         gun = enemy.gun;

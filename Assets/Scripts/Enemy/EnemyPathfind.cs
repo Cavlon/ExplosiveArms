@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class ChaseState : State
+public class PathfindState : State
 {
+    private EnemyController enemy;
     private Transform target;
     private Transform trans;
     private float speed;
@@ -16,9 +17,12 @@ public class ChaseState : State
     private float distance;
     private EnemyGun gun;
     private Seeker seeker;
-    private int transTime;
+    private bool hasGun;
 
-    public ChaseState(Enemy enemy) : base(enemy) { }
+    public PathfindState(EnemyController enemy) 
+    {
+        this.enemy = enemy;
+    }
 
     public override void Tick()
     {
@@ -43,26 +47,27 @@ public class ChaseState : State
         }
 
         pathUpdateDelay -= Time.deltaTime;
-        if (enemy.CanSeePlayerCollision(trans))
-        {
-            transTime -= 1;
-            if (transTime == 0)
-                enemy.SetState(new AttackState(enemy));
-        }
 
-        gun.canShoot = enemy.CanSeePlayerAttack(trans);
+        if (hasGun)
+        {
+            gun.canShoot = enemy.CanSeePlayerAttack(trans);
+        }       
 
     }
 
     public override void OnStateEnter()
     {
-        transTime = 20;
+        enemy.transTime = 20;
         seeker = enemy.seeker;
         speed = enemy.speed;
-        trans = enemy.transform;
+        trans = enemy.trans;
         target = enemy.playerTrans;
-        gun = enemy.gun;
-        gun.canShoot = false;
+        hasGun = enemy.hasGun;
+        if (hasGun)
+        {
+            gun = enemy.gun;
+            gun.canShoot = false;
+        }
         seeker.StartPath(trans.position, target.position, OnPathComplete);
         pathUpdateDelay = initialPathUpdateDelay;
     }

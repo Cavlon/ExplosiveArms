@@ -7,44 +7,44 @@ public class HealthUI : MonoBehaviour
 {
 
     private int health;
-    private int heartNum;
+    private int heartNum;   
     public PlayerController playerCont;
 
-    [SerializeField] protected Image[] hearts;
-    [SerializeField] protected Sprite heart;
-    [SerializeField] protected Sprite emptyHeart;
-
-    private void Start()
-    {
-    }
-
-    void Update()
-    {
-    }
+    [SerializeField] protected Animator[] heartsAnim;
+    private List<Image> heartsImage = new List<Image>();
 
     public void UpdateHealth()
     {
         health = playerCont.health;
         heartNum = playerCont.maxHealth;
-        for (int i = 0; i < hearts.Length; i++)
+        for (int i = 0; i < heartsAnim.Length; i++)
         {
             if (i < health)
             {
-                hearts[i].sprite = heart;
+                heartsAnim[i].SetBool("Full", true);
             }
             else
             {
-                hearts[i].sprite = emptyHeart;
+                heartsAnim[i].SetBool("Full", false);
             }
 
             if (i < heartNum)
             {
-                hearts[i].enabled = true;
+                heartsImage[i].enabled = true;
             }
             else
             {
-                hearts[i].enabled = false;
+                heartsImage[i].enabled = false;
             }
         }
+    }
+
+    public void getImages()
+    {
+        for (int i = 0; i < heartsAnim.Length; i++)
+        {
+            heartsImage.Add(heartsAnim[i].gameObject.GetComponent<Image>());
+        }
+        heartsImage.ToArray();
     }
 }
