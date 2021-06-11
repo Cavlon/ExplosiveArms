@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour
   
     protected State currentState;
     protected string currentStateS;  
-    protected WeaponDrops gameManager;
+    protected EnemyDeath gameManager;
     protected Vector3 lastPosition;
     protected SpriteRenderer spriteRender;
     protected Animator anim;
@@ -31,6 +31,7 @@ public class EnemyController : MonoBehaviour
     [HideInInspector] public Seeker seeker;
 
     public float speed;
+    public int score;
 
     private GameObject player;       
     private BoxCollider2D colliderComponent;
@@ -45,7 +46,7 @@ public class EnemyController : MonoBehaviour
         lastPosition = Vector3.zero;
         spriteRender = GetComponentInChildren<SpriteRenderer>();
         anim = GetComponentInChildren<Animator>();
-        gameManager = GameObject.Find("GameManager").GetComponent<WeaponDrops>();
+        gameManager = GameObject.Find("GameManager").GetComponent<EnemyDeath>();
         rb = GetComponent<Rigidbody2D>();
         hasGun = false;
         if (gun != null)
@@ -140,6 +141,10 @@ public class EnemyController : MonoBehaviour
         {
             Explosion explosion = collision.gameObject.GetComponent<Explosion>();
             health -= explosion.damage;
+            if (health <= 0)
+            {
+                score = (int)(score * 1.5);
+            }
             Vector2 dir = transform.position - collision.gameObject.transform.position;
             rb.AddForce(dir * explosion.thrust, ForceMode2D.Impulse);
         }

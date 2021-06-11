@@ -19,7 +19,7 @@ public class Shrub : EnemyController
         FindState();
         if (health <= 0)
         {
-            gameManager.deadEnemy(trans);
+            gameManager.deadEnemy(trans, score);
             Destroy(gameObject);
         }
         Animate();

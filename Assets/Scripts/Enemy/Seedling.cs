@@ -34,7 +34,7 @@ public class Seedling : EnemyController
 
         if (health <= 0)
         {
-            gameManager.deadEnemy(trans);
+            gameManager.deadEnemy(trans, score);
             Destroy(gameObject);
         }
 
@@ -105,6 +105,10 @@ public class Seedling : EnemyController
         {
             Explosion explosion = collision.gameObject.GetComponent<Explosion>();
             health -= explosion.damage;
+            if (health <= 0)
+            {
+                score = (int)(score * 1.5);
+            }
             Vector2 dir = transform.position - collision.gameObject.transform.position;
             rb.AddForce(dir * explosion.thrust, ForceMode2D.Impulse);
         }

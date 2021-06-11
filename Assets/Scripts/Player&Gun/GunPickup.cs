@@ -22,7 +22,7 @@ public class GunPickup : MonoBehaviour
             Instantiate(gun, player.transform.position, player.transform.rotation, player.transform);
             player.GetComponent<Player_Shooting>().GetGun();
             gameManager.GetComponent<DetectControlMethod>().GetGun();
-            gameManager.GetComponent<WeaponDrops>().droppedGuns -= 1;
+            gameManager.GetComponent<EnemyDeath>().droppedGuns -= 1;
             Destroy(gameObject);
         }
     }

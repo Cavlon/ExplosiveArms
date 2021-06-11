@@ -27,6 +27,7 @@ public class SeedlingChase : State
             {
                 enemy.enrage = true;
                 enemy.speed += 2;
+                speed = enemy.speed;
             }             
         }
     }
