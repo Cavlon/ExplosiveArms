@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrailEffect : MonoBehaviour
+public class EffectDestroy : MonoBehaviour
 {
     public float destroyTime;
 

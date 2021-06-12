@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] protected float dashSpeed;
     [SerializeField] protected float startDashTime;
     [SerializeField] protected float startDashCooldown;
-    [SerializeField] protected TrailEffect dashParticles;
+    [SerializeField] protected EffectDestroy dashParticles;
     [SerializeField] protected float startKnockTime;
 
     private Animator animator;
@@ -106,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
         {
             float angle = Mathf.Atan2(-movementDir.y, -movementDir.x) * Mathf.Rad2Deg;
             Quaternion instanceRotation = Quaternion.Euler(0, 0, angle);
-            TrailEffect instance_ = Instantiate(dashParticles, transform.position, instanceRotation);
+            EffectDestroy instance_ = Instantiate(dashParticles, transform.position, instanceRotation);
             instance_.destroyTime = destroyTime;
             initialVelocity = rb.velocity;
             rb.velocity *= dashSpeed;

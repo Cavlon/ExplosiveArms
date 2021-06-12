@@ -11,18 +11,39 @@ public class EnemyDeath : MonoBehaviour
     private int probabilityWindow;
     private int totalScore;
     private int combo;
+    private bool firstKill;
+    private float lastKillTime;
 
     [SerializeField] protected TextMeshProUGUI scoreText;
     [SerializeField] protected TextMeshProUGUI comboText;
     [SerializeField] protected Animator scoreAnim;
     [SerializeField] protected Animator comboAnim;
+    [SerializeField] protected float comboResetTime;
 
-    void Start()
+    private void Start()
     {
         droppedGuns = 0;
         combo = 1;
-        Combo(false);
+        firstKill = true;
+        lastKillTime = 0;
         AddScore(0);
+    }
+
+    private void Update()
+    {
+        if (Time.time - lastKillTime > comboResetTime)
+        {
+            combo = 1;
+            firstKill = true;
+        }
+        if (combo == 1)
+        {
+            comboText.enabled = false;
+        }
+        else
+        {
+            comboText.enabled = true;
+        }
     }
 
     private void Drop(Transform enemyPos)
@@ -46,7 +67,7 @@ public class EnemyDeath : MonoBehaviour
         probability();
         Drop(enemyPos);
         AddScore(score);
-        Combo(true);
+        Combo();
     }
 
     private void AddScore(int score)
@@ -56,22 +77,21 @@ public class EnemyDeath : MonoBehaviour
         scoreAnim.SetTrigger("Score");
     }
 
-    private void Combo(bool addVal)
+    private void Combo()
     {
-        if (addVal)
+        
+            
+        if (firstKill)
         {
-            combo += 1;
-            comboText.text = "Combo x" + combo;
-            comboAnim.SetTrigger("Combo");
-        }
-
-        if (combo == 1)
-        {
-            comboText.enabled = false;
+            firstKill = false;
         }
         else
         {
-            comboText.enabled = true;
-        }      
+            combo += 1;
+        }
+        comboText.text = "Combo x" + combo;
+        comboAnim.SetTrigger("Combo");            
+        lastKillTime = Time.time;
+                  
     }
 }

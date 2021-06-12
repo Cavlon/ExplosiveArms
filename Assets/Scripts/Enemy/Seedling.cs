@@ -118,7 +118,7 @@ public class Seedling : EnemyController
         }
     }
 
-    private void OnDestroy()
+    public override void OnDestroy()
     {
         Instantiate(Explosion, (Vector2)trans.position + Explosion.offset, Quaternion.identity);
     }

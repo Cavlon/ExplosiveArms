@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Player_Shooting : MonoBehaviour
 {
-    private gunScript gun;
+    [SerializeField] WeaponTimer timer;
+    [HideInInspector] public gunScript gun;
     public bool hasGun;
 
     void Awake()
@@ -37,7 +38,7 @@ public class Player_Shooting : MonoBehaviour
             if (Input.GetButtonUp("Throw"))
             {
                 gun.throwGun = false;
-            }
+            }         
         }
     }
 
@@ -45,5 +46,6 @@ public class Player_Shooting : MonoBehaviour
     {
         gun = transform.GetChild(1).GetComponent<gunScript>();
         hasGun = true;
+        timer.startTimer = true;
     }
 }

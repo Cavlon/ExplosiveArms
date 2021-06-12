@@ -12,7 +12,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] protected LayerMask myLayerMaskAttack;
     [SerializeField] protected float health;    
     [SerializeField] protected Sprite[] sprites;
-  
+    [SerializeField] protected EffectDestroy deathEffect;
+
     protected State currentState;
     protected string currentStateS;  
     protected EnemyDeath gameManager;
@@ -148,5 +149,10 @@ public class EnemyController : MonoBehaviour
             Vector2 dir = transform.position - collision.gameObject.transform.position;
             rb.AddForce(dir * explosion.thrust, ForceMode2D.Impulse);
         }
+    }
+
+    public virtual void OnDestroy()
+    {
+        EffectDestroy instance_ = Instantiate(deathEffect, trans.position, Quaternion.identity);
     }
 }
