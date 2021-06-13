@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enrage : MonoBehaviour
+public class AnimVariable : MonoBehaviour
 {
-    public bool rage;
+    public bool variable;
 
     private void Awake()
     {
-        rage = false;
+        variable = false;
     }
 }

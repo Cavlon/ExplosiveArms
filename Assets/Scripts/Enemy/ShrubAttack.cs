@@ -2,7 +2,7 @@
 
 public class ShrubAttack : State
 {
-    private Shrub enemy;
+    private ShrubEnemy enemy;
     private float distance;
     private float stoppingDistance;
     private float retreatDistance;
@@ -12,7 +12,7 @@ public class ShrubAttack : State
     private int circleDir;
     private EnemyGun gun;
 
-    public ShrubAttack(Shrub enemy) 
+    public ShrubAttack(ShrubEnemy enemy) 
     {
         this.enemy = enemy;
     }

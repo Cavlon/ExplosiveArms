@@ -18,21 +18,21 @@ public class EnemyController : MonoBehaviour
     protected string currentStateS;  
     protected EnemyDeath gameManager;
     protected Vector3 lastPosition;
-    protected SpriteRenderer spriteRender;
-    protected Animator anim;
+    protected SpriteRenderer spriteRender;   
     protected Vector3 dir;
     protected BulletController bullet;
     protected Rigidbody2D rb;
+    protected Animator anim;
 
     [HideInInspector] public int transTime;
     [HideInInspector] public Transform trans;
-    [HideInInspector] public Transform playerTrans;
-    [HideInInspector] public EnemyGun gun;
+    [HideInInspector] public Transform playerTrans;   
     [HideInInspector] public bool hasGun;
     [HideInInspector] public Seeker seeker;
 
     public float speed;
     public int score;
+    public EnemyGun gun;
 
     private GameObject player;       
     private BoxCollider2D colliderComponent;
@@ -49,10 +49,9 @@ public class EnemyController : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         gameManager = GameObject.Find("GameManager").GetComponent<EnemyDeath>();
         rb = GetComponent<Rigidbody2D>();
-        hasGun = false;
-        if (gun != null)
+        if (hasGun)
         {
-            hasGun = true;
+            gun = GetComponentInChildren<EnemyGun>();
         }
     }
 

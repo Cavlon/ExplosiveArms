@@ -1,8 +1,5 @@
 ﻿using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class gunScript : MonoBehaviour
 {
@@ -23,8 +20,9 @@ public class gunScript : MonoBehaviour
     [SerializeField] protected float camShakeIntensity;
     [SerializeField] protected float camShakeTime;
 
-    private CameraShake playerCamShake;
-    private CinemachineVirtualCamera slideCam;
+    [HideInInspector] public CinemachineVirtualCamera slideCam;
+
+    private CameraShake playerCamShake; 
     private CinemachineVirtualCamera[] vCams;
     private CameraShake slideCamShake;
     private Camera cam;
@@ -110,6 +108,7 @@ public class gunScript : MonoBehaviour
             Vector2 dir = (firePoint.position - trans.position) * throwDistance;
             GunThrown thrown = Instantiate(gunThrown, (Vector2)trans.position + dir, firePoint.rotation);
             thrown.speed = bulletSpeed;
+            thrown.sprite.GetComponent<SpriteRenderer>().sprite = gunSprite.sprite;
             throwGun = false;
             Destroy(gameObject);
         }

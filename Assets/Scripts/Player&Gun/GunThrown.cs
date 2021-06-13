@@ -10,7 +10,7 @@ public class GunThrown : MonoBehaviour
     [SerializeField] protected float rotateSpeed;
     [SerializeField] protected Explosion Explosion;
     [SerializeField] protected LayerMask ignoreLayers;
-    private Transform sprite;
+    [HideInInspector] public Transform sprite;
     private Rigidbody2D rb;
 
     private void Awake()

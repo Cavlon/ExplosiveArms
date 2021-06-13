@@ -13,9 +13,9 @@ public class EnemyGun : MonoBehaviour
     [SerializeField] protected int bulletDamage;
     [SerializeField] protected float bulletThrust;
 
-    private Transform trans;
+    [HideInInspector] public Transform trans;
     private GameObject player;
-    private float shotDelay;
+    [HideInInspector] public float shotDelay;
     private SpriteRenderer gunSprite;
     private SpriteRenderer enemySprite;
     private float angle;
@@ -23,28 +23,18 @@ public class EnemyGun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        trans = GetComponent<Transform>();
-        player = GameObject.FindWithTag("Player");
-        shotDelay = initialShotDelay;
-        gunSprite = GetComponentInChildren<SpriteRenderer>();
-        enemySprite = trans.parent.GetComponentInChildren<SpriteRenderer>();
+        GetVariables();
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         Rotate();
         if (canShoot)
         {
             if (shotDelay <= 0)
             {
-                BulletController newBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
-                newBullet.tag = "EnemyBullet";
-                newBullet.GetComponent<SpriteRenderer>().color = newBullet.colour =new Color(255, 0, 0, 255);
-                newBullet.speed = bulletSpeed;
-                newBullet.damage = bulletDamage;
-                newBullet.thrust = bulletThrust;
-                shotDelay = initialShotDelay;
+                Shoot();
             }
             else
             {
@@ -54,7 +44,7 @@ public class EnemyGun : MonoBehaviour
         SortingLayer();
     }
 
-    void Rotate()
+    public void Rotate()
     {
         Vector2 pos = new Vector2(trans.position.x, trans.position.y);
         Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.y);
@@ -74,7 +64,7 @@ public class EnemyGun : MonoBehaviour
         trans.rotation = rotate;
     }
 
-    void SortingLayer()
+    public void SortingLayer()
     {
         if (angle > 0)
         {
@@ -83,5 +73,25 @@ public class EnemyGun : MonoBehaviour
         {
             gunSprite.sortingOrder = enemySprite.sortingOrder + 1;
         }
+    }
+
+    public virtual void GetVariables()
+    {
+        trans = GetComponent<Transform>();
+        player = GameObject.FindWithTag("Player");
+        shotDelay = initialShotDelay;
+        gunSprite = GetComponentInChildren<SpriteRenderer>();
+        enemySprite = trans.parent.GetComponentInChildren<SpriteRenderer>();
+    }
+
+    public virtual void Shoot()
+    {
+        BulletController newBullet = Instantiate(bullet, firePoint.position, trans.rotation);
+        newBullet.tag = "EnemyBullet";
+        newBullet.GetComponent<SpriteRenderer>().color = newBullet.colour = new Color(255, 0, 0, 255);
+        newBullet.speed = bulletSpeed;
+        newBullet.damage = bulletDamage;
+        newBullet.thrust = bulletThrust;
+        shotDelay = initialShotDelay;
     }
 }

@@ -6,7 +6,7 @@ public class Seedling : EnemyController
     public float rageDistance;
     public int rageTime;
     [HideInInspector] public bool enrage;
-    private Enrage rageChecker;
+    private AnimVariable rageChecker;
     [HideInInspector] public bool rage;
     [SerializeField] protected Explosion Explosion;
 
@@ -17,7 +17,7 @@ public class Seedling : EnemyController
         rage = false;
         SetState(new SeedlingChase(this));
         currentStateS = "Chase";
-        rageChecker = GetComponentInChildren<Enrage>();
+        rageChecker = GetComponentInChildren<AnimVariable>();
     }
  
     void Update()
@@ -29,7 +29,7 @@ public class Seedling : EnemyController
         } else
         {
             anim.SetBool("Enrage", true);
-            rage = rageChecker.rage;
+            rage = rageChecker.variable;
         }
 
         if (health <= 0)

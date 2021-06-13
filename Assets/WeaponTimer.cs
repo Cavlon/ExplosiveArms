@@ -64,7 +64,7 @@ public class WeaponTimer : MonoBehaviour
 
         posTime = time / timeLimit;
 
-        float seconds = Mathf.CeilToInt(time % 60);
+        int seconds = Mathf.CeilToInt(time % 60);
 
         timerText.text = seconds.ToString();      
 

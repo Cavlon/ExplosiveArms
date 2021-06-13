@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Shrub : EnemyController
+public class ShrubEnemy : EnemyController
 {
 
     public float stoppingDistance;

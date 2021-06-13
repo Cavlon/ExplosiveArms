@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Cinemachine;
 using UnityEngine;
 
 public class Player_Shooting : MonoBehaviour
 {
     [SerializeField] WeaponTimer timer;
     [HideInInspector] public gunScript gun;
+    private CinemachineVirtualCamera slideCam;
     public bool hasGun;
 
     void Awake()
@@ -40,11 +40,16 @@ public class Player_Shooting : MonoBehaviour
                 gun.throwGun = false;
             }         
         }
+        else
+        {
+            slideCam.Priority = 0;
+        }
     }
 
     public void GetGun()
     {
         gun = transform.GetChild(1).GetComponent<gunScript>();
+        slideCam = gun.slideCam;
         hasGun = true;
         timer.startTimer = true;
     }
