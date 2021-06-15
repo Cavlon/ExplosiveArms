@@ -5,7 +5,7 @@ using UnityEngine;
 public class DetectControlMethod : MonoBehaviour
 {
 
-    private gunScript gun;
+    private weaponScript weapon;
     private Crosshair crosshair;
     private CameraFollow vcam;
     public bool useController;
@@ -13,7 +13,7 @@ public class DetectControlMethod : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetGun();
+        GetWeapon();
         crosshair = GameObject.Find("Crosshair").GetComponent<Crosshair>();
         vcam = GameObject.Find("vcamFollow").GetComponent<CameraFollow>();
     }
@@ -28,13 +28,13 @@ public class DetectControlMethod : MonoBehaviour
         {
             useController = true;
         }
-        gun.useController = useController;
+        weapon.useController = useController;
         crosshair.useController = useController;
         vcam.useController = useController;
     }
 
-    public void GetGun()
+    public void GetWeapon()
     {
-        gun = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<gunScript>();
+        weapon = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<weaponScript>();
     }
 }

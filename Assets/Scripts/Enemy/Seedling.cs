@@ -32,12 +32,6 @@ public class Seedling : EnemyController
             rage = rageChecker.variable;
         }
 
-        if (health <= 0)
-        {
-            gameManager.deadEnemy(trans, score);
-            Destroy(gameObject);
-        }
-
         if (rage)
         {
             enrage = false;
@@ -94,24 +88,7 @@ public class Seedling : EnemyController
 
     public override void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Bullet"))
-        {
-            bullet = collision.gameObject.GetComponent<BulletController>();
-            health -= bullet.damage;
-            rb.AddForce(bullet.dir * bullet.thrust, ForceMode2D.Impulse);
-            Destroy(bullet.gameObject);
-        }
-        if (collision.CompareTag("Explosion"))
-        {
-            Explosion explosion = collision.gameObject.GetComponent<Explosion>();
-            health -= explosion.damage;
-            if (health <= 0)
-            {
-                score = (int)(score * 1.5);
-            }
-            Vector2 dir = transform.position - collision.gameObject.transform.position;
-            rb.AddForce(dir * explosion.thrust, ForceMode2D.Impulse);
-        }
+        base.OnTriggerEnter2D(collision);
         if (collision.CompareTag("Player"))
         {
             Destroy(gameObject);
@@ -121,5 +98,5 @@ public class Seedling : EnemyController
     public override void OnDestroy()
     {
         Instantiate(Explosion, (Vector2)trans.position + Explosion.offset, Quaternion.identity);
-    }
+    }   
 }

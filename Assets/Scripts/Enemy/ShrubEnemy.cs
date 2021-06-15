@@ -17,11 +17,6 @@ public class ShrubEnemy : EnemyController
     {
         currentState.Tick();
         FindState();
-        if (health <= 0)
-        {
-            gameManager.deadEnemy(trans, score);
-            Destroy(gameObject);
-        }
         Animate();
     }
 

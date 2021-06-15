@@ -20,10 +20,10 @@ public class EnemyController : MonoBehaviour
     protected Vector3 lastPosition;
     protected SpriteRenderer spriteRender;   
     protected Vector3 dir;
-    protected BulletController bullet;
-    protected Rigidbody2D rb;
+    protected BulletController bullet;   
     protected Animator anim;
 
+    [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public int transTime;
     [HideInInspector] public Transform trans;
     [HideInInspector] public Transform playerTrans;   
@@ -133,9 +133,10 @@ public class EnemyController : MonoBehaviour
         if (collision.CompareTag("Bullet"))
         {
             bullet = collision.gameObject.GetComponent<BulletController>();
-            health -= bullet.damage;
+            TakeDamage(bullet.damage);
             rb.AddForce(bullet.dir * bullet.thrust, ForceMode2D.Impulse);
             Destroy(bullet.gameObject);
+            
         }
         if (collision.CompareTag("Explosion"))
         {
@@ -144,6 +145,8 @@ public class EnemyController : MonoBehaviour
             if (health <= 0)
             {
                 score = (int)(score * 1.5);
+                gameManager.deadEnemy(trans, score);
+                Destroy(gameObject);
             }
             Vector2 dir = transform.position - collision.gameObject.transform.position;
             rb.AddForce(dir * explosion.thrust, ForceMode2D.Impulse);
@@ -152,6 +155,16 @@ public class EnemyController : MonoBehaviour
 
     public virtual void OnDestroy()
     {
-        EffectDestroy instance_ = Instantiate(deathEffect, trans.position, Quaternion.identity);
+        Instantiate(deathEffect, trans.position, Quaternion.identity);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            gameManager.deadEnemy(trans, score);
+            Destroy(gameObject);
+        }
     }
 }

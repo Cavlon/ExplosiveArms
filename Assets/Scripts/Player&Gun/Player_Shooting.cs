@@ -4,7 +4,7 @@ using UnityEngine;
 public class Player_Shooting : MonoBehaviour
 {
     [SerializeField] WeaponTimer timer;
-    [HideInInspector] public gunScript gun;
+    [HideInInspector] public weaponScript weapon;
     private CinemachineVirtualCamera slideCam;
     public bool hasGun;
 
@@ -18,26 +18,26 @@ public class Player_Shooting : MonoBehaviour
     {
         if (hasGun)
         {
-            if ((Input.GetButtonDown("Fire1") || Input.GetAxisRaw("Fire1") > 0.0f) & gun.canFire)
+            if ((Input.GetButtonDown("Fire1") || Input.GetAxisRaw("Fire1") > 0.0f) & weapon.canAttack)
             {
-                gun.isFiring = true;
+                weapon.isAttacking = true;
             }
 
             if (Input.GetButtonUp("Fire1") || Input.GetAxisRaw("Fire1") == 0.0f)
             {
-                gun.isFiring = false;
-                gun.canFire = true;
+                weapon.isAttacking = false;
+                weapon.canAttack = true;
             }
 
             if (Input.GetButtonDown("Throw"))
             {
-                gun.throwGun = true;
+                weapon.throwWeapon = true;
                 hasGun = false;
             }
 
             if (Input.GetButtonUp("Throw"))
             {
-                gun.throwGun = false;
+                weapon.throwWeapon = false;
             }         
         }
         else
@@ -48,8 +48,8 @@ public class Player_Shooting : MonoBehaviour
 
     public void GetGun()
     {
-        gun = transform.GetChild(1).GetComponent<gunScript>();
-        slideCam = gun.slideCam;
+        weapon = transform.GetChild(1).GetComponent<weaponScript>();
+        slideCam = weapon.slideCam;
         hasGun = true;
         timer.startTimer = true;
     }
