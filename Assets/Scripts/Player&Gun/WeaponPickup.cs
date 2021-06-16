@@ -6,11 +6,13 @@ public class WeaponPickup : MonoBehaviour
 {
     private GameObject player;
     private GameObject gameManager;
+    private Player_Shooting playerShooting;
     [SerializeField] protected Transform weapon;
 
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        playerShooting = player.GetComponent<Player_Shooting>();
         gameManager = GameObject.Find("GameManager");
     }
 
@@ -19,8 +21,8 @@ public class WeaponPickup : MonoBehaviour
     {
         if (collision.tag == "Player" & player.GetComponent<Player_Shooting>().hasGun == false)
         {
-            Instantiate(weapon, player.transform.position, player.transform.rotation, player.transform);
-            player.GetComponent<Player_Shooting>().GetGun();
+            playerShooting.DestroyMelee();
+            Instantiate(weapon, player.transform.position, player.transform.rotation, player.transform);            
             gameManager.GetComponent<DetectControlMethod>().GetWeapon();
             gameManager.GetComponent<EnemyDeath>().droppedGuns -= 1;
             Destroy(gameObject);

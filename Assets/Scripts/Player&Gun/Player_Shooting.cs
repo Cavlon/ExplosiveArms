@@ -4,9 +4,12 @@ using UnityEngine;
 public class Player_Shooting : MonoBehaviour
 {
     [SerializeField] WeaponTimer timer;
+    [SerializeField] meleeAttack melee;
     [HideInInspector] public weaponScript weapon;
     private CinemachineVirtualCamera slideCam;
     public bool hasGun;
+    private bool hasMelee;
+    private meleeAttack meleeInstance;
 
     void Awake()
     {
@@ -16,18 +19,20 @@ public class Player_Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if ((Input.GetButtonDown("Fire1") || Input.GetAxisRaw("Fire1") > 0.0f) & weapon.canAttack)
+        {
+            weapon.isAttacking = true;
+        }
+
+        if (Input.GetButtonUp("Fire1") || Input.GetAxisRaw("Fire1") == 0.0f)
+        {
+            weapon.isAttacking = false;
+            weapon.canAttack = true;
+        }
+
         if (hasGun)
         {
-            if ((Input.GetButtonDown("Fire1") || Input.GetAxisRaw("Fire1") > 0.0f) & weapon.canAttack)
-            {
-                weapon.isAttacking = true;
-            }
-
-            if (Input.GetButtonUp("Fire1") || Input.GetAxisRaw("Fire1") == 0.0f)
-            {
-                weapon.isAttacking = false;
-                weapon.canAttack = true;
-            }
+            hasMelee = false;           
 
             if (Input.GetButtonDown("Throw"))
             {
@@ -38,19 +43,43 @@ public class Player_Shooting : MonoBehaviour
             if (Input.GetButtonUp("Throw"))
             {
                 weapon.throwWeapon = false;
-            }         
+            }    
         }
         else
         {
             slideCam.Priority = 0;
+            if (!hasMelee)
+            {
+                hasMelee = true;
+                CreateMelee();         
+            }
+        }
+        if (weapon == null)
+        {
+            GetGun();
         }
     }
 
     public void GetGun()
     {
-        weapon = transform.GetChild(1).GetComponent<weaponScript>();
+        weapon = transform.GetComponentInChildren<weaponScript>();
         slideCam = weapon.slideCam;
-        hasGun = true;
-        timer.startTimer = true;
+        if (!hasMelee)
+        {
+            hasGun = true;
+            timer.startTimer = true;
+        }     
+    }
+
+    public void CreateMelee()
+    {
+        meleeInstance = Instantiate(melee, transform.position, Quaternion.identity, transform);
+    }
+
+    public void DestroyMelee()
+    {
+        Destroy(meleeInstance.gameObject);
+        hasMelee = false;
+        GetGun();
     }
 }

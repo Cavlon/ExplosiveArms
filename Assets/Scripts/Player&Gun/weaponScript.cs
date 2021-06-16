@@ -5,7 +5,7 @@ public abstract class weaponScript : MonoBehaviour
 {
     
     public Transform attackPoint;
-   
+
     [HideInInspector] public bool isAttacking;   
     [HideInInspector] public bool canAttack;
     [HideInInspector] public bool throwWeapon;
@@ -46,7 +46,7 @@ public abstract class weaponScript : MonoBehaviour
         playerCamShake = vCams[1].GetComponent<CameraShake>();
         canAttack = true;
     }
-    void Update()
+    public void Update()
     {
         //Use Mouse
         if (!useController)
@@ -90,7 +90,7 @@ public abstract class weaponScript : MonoBehaviour
             attackCounter -= Time.deltaTime;
         }
 
-        if (throwWeapon)
+        if (throwWeapon && weaponThrown != null)
         {
             Throw();
         }

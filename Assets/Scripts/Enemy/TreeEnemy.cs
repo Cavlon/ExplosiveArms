@@ -100,4 +100,10 @@ public class TreeEnemy : EnemyController
             anim.SetBool("canSlam", true);
         }
     }
+
+    public override void OnDestroy()
+    {
+        EffectDestroy instance = Instantiate(deathEffect, trans.position, Quaternion.identity);
+        instance.transform.localScale = new Vector2(2, 2);
+    }
 }
