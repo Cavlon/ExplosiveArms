@@ -136,6 +136,6 @@ MonoBehaviour:
   anim: Explosion 1
   animator: {fileID: 0}
   delay: -0.3
-  damage: 30
+  damage: 12
   thrust: 20
   offset: {x: 0, y: 0}

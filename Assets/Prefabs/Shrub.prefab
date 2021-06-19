@@ -55,7 +55,7 @@ MonoBehaviour:
   myLayerMaskAttack:
     serializedVersion: 2
     m_Bits: 768
-  health: 30
+  health: 10
   sprites:
   - {fileID: 21300000, guid: c1239c44ca5d1224f901fd7037be49b2, type: 3}
   - {fileID: 21300000, guid: e670e696b898436499b8a5fe0d36de6f, type: 3}
@@ -308,7 +308,7 @@ MonoBehaviour:
   firePoint: {fileID: 1189657494212473188}
   canShoot: 0
   initialShotDelay: 1
-  bulletSpeed: 500
+  bulletSpeed: 250
   bulletDamage: 1
   bulletThrust: 10
   trans: {fileID: 0}

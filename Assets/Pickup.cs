@@ -17,10 +17,14 @@ public abstract class Pickup : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Action();
             Destroy(gameObject);
         }
     }
 
     public abstract void Action();
+
+    public void OnDestroy()
+    {
+        Action();
+    }
 }

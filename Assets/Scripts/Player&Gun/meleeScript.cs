@@ -25,16 +25,15 @@ public class meleeScript : weaponScript
         {
             if (enemy.CompareTag("Enemy"))
             {
-                print("oof");
                 EnemyController enemyCont = enemy.GetComponent<EnemyController>();
-                enemyCont.TakeDamage(attackDamage);
+                enemyCont.TakeDamage(attackDamage, 1.5);
                 Vector2 dir = enemy.gameObject.transform.position - transform.position;
                 enemyCont.rb.AddForce(dir * attackThrust, ForceMode2D.Impulse);
             }
         }
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(attackPoint.position, range);
     }

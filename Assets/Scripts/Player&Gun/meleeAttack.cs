@@ -30,7 +30,7 @@ public class meleeAttack : weaponScript
             if (enemy.CompareTag("Enemy"))
             {
                 EnemyController enemyCont = enemy.GetComponent<EnemyController>();
-                enemyCont.TakeDamage(attackDamage);
+                enemyCont.TakeDamage(attackDamage, 1.5);
                 Vector2 dir = enemy.gameObject.transform.position - transform.position;
                 enemyCont.rb.AddForce(dir * attackThrust, ForceMode2D.Impulse);
             }

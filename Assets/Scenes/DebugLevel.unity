@@ -157,8 +157,8 @@ MonoBehaviour:
   - {fileID: 1189657493985152412, guid: 932fb0df048c9804d9793b7c6662d685, type: 3}
   - {fileID: 8164424478873433432, guid: eca303a383b719e4db2a76ff19576baf, type: 3}
   spawners: []
-  enemyAmounts: 000000000100000000000000
-  waves: 1
+  enemyAmounts: 0c0000000a00000002000000
+  waves: 4
 --- !u!4 &56432162
 Transform:
   m_ObjectHideFlags: 0
@@ -30093,7 +30093,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 0
-    m_SensorSize: {x: 2.866505, y: 1}
+    m_SensorSize: {x: 1.8455414, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -30241,7 +30241,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.000000834465, y: 0, z: -10}
+  m_LocalPosition: {x: 0.0000005364418, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -35480,16 +35480,20 @@ MonoBehaviour:
   droppedGuns: 0
   droppedHealth: 0
   availableWeapons:
-  - {fileID: 8140461768229493450, guid: d07988c8a5e12b3429a7f09b1cedc482, type: 3}
+  - {fileID: 7199445701434608801, guid: 612eb14e8216cc249b6ca70a1f4237a9, type: 3}
+  - {fileID: 6295879876441572023, guid: 87a81c05aad5cb246a4c7959f412f390, type: 3}
+  - {fileID: 134828390944107393, guid: 5d4d324cf64ad2c4a91a4ec6cc6f9487, type: 3}
+  - {fileID: 7686660247154575715, guid: 1bd0ea5b3ea00f143968fb3a861d89d0, type: 3}
+  weaponPickup: {fileID: 8140461768229493451, guid: d07988c8a5e12b3429a7f09b1cedc482, type: 3}
   healthPickup: {fileID: 2409671079726899282, guid: 9d40970efdb9ce7418b6a7b42300c370, type: 3}
   healthUpgrade: {fileID: 6602416193378850778, guid: 2b90c318532f9db47b57297707ced3c0, type: 3}
+  comboResetTime: 4
+  weaponDropChance: 0.6
+  healthDropChance: 1
   scoreText: {fileID: 208659233}
   comboText: {fileID: 416512839}
   scoreAnim: {fileID: 208659235}
   comboAnim: {fileID: 416512838}
-  comboResetTime: 4
-  weaponDropChance: 0.6
-  healthDropChance: 0.6
 --- !u!114 &1167334867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35528,7 +35532,7 @@ MonoBehaviour:
   fuse: {fileID: 271138977}
   spark: {fileID: 699636029}
   timerText: {fileID: 329179763}
-  timeLimit: 60
+  timeLimit: 10
   explosion: {fileID: 1677371729822466680, guid: 4f222c5fcbf41894c89f9dc7847230dd, type: 3}
   startTimer: 0
   stopTimer: 0
@@ -35624,7 +35628,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 0
-    m_SensorSize: {x: 2.866505, y: 1}
+    m_SensorSize: {x: 1.8455414, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -35641,7 +35645,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1238664580}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.000000834465, y: 0, z: -10}
+  m_LocalPosition: {x: 0.0000005364418, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 522886181}
@@ -59098,14 +59102,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7199445701434608801, guid: 612eb14e8216cc249b6ca70a1f4237a9, type: 3}
-      propertyPath: attackPoint
-      value: 
-      objectReference: {fileID: 5476083088933714071}
-    - target: {fileID: 7199445701434608801, guid: 612eb14e8216cc249b6ca70a1f4237a9, type: 3}
-      propertyPath: attackThrust
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 7199445701434608807, guid: 612eb14e8216cc249b6ca70a1f4237a9, type: 3}
       propertyPath: m_Name
       value: AK
@@ -59116,8 +59112,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 612eb14e8216cc249b6ca70a1f4237a9, type: 3}
---- !u!4 &5476083088933714071 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7199445701146198189, guid: 612eb14e8216cc249b6ca70a1f4237a9, type: 3}
-  m_PrefabInstance: {fileID: 2959873352009345567}
-  m_PrefabAsset: {fileID: 0}

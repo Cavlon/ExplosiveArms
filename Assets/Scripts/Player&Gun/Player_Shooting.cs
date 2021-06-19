@@ -78,8 +78,11 @@ public class Player_Shooting : MonoBehaviour
 
     public void DestroyMelee()
     {
-        Destroy(meleeInstance.gameObject);
-        hasMelee = false;
-        GetGun();
+        if (meleeInstance != null)
+        {
+            Destroy(meleeInstance.gameObject);
+            hasMelee = false;
+            GetGun();
+        }           
     }
 }

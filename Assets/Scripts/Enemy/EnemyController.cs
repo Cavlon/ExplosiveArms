@@ -133,7 +133,7 @@ public class EnemyController : MonoBehaviour
         if (collision.CompareTag("Bullet"))
         {
             bullet = collision.gameObject.GetComponent<BulletController>();
-            TakeDamage(bullet.damage);
+            TakeDamage(bullet.damage, 1);
             rb.AddForce(bullet.dir * bullet.thrust, ForceMode2D.Impulse);
             Destroy(bullet.gameObject);
             
@@ -141,12 +141,7 @@ public class EnemyController : MonoBehaviour
         if (collision.CompareTag("Explosion"))
         {
             Explosion explosion = collision.gameObject.GetComponent<Explosion>();
-            health -= explosion.damage;
-            if (health <= 0)
-            {
-                score = (int)(score * 1.5);
-                Destroy(gameObject);
-            }
+            TakeDamage(explosion.damage, 2);
             Vector2 dir = transform.position - collision.gameObject.transform.position;
             rb.AddForce(dir * explosion.thrust, ForceMode2D.Impulse);
         }
@@ -159,11 +154,12 @@ public class EnemyController : MonoBehaviour
         instance.transform.localScale = trans.localScale;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, double scoreMultiplier)
     {
         health -= damage;
         if (health <= 0)
         {
+            score = (int)(score * scoreMultiplier);
             Destroy(gameObject);
         }
     }

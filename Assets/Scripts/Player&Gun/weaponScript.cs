@@ -5,12 +5,14 @@ public abstract class weaponScript : MonoBehaviour
 {
     
     public Transform attackPoint;
+    public SpriteRenderer weaponSprite;
 
     [HideInInspector] public bool isAttacking;   
     [HideInInspector] public bool canAttack;
     [HideInInspector] public bool throwWeapon;
     [HideInInspector] public bool useController;
-    [HideInInspector] public CinemachineVirtualCamera slideCam;
+    [HideInInspector] public CinemachineVirtualCamera slideCam;  
+
     [SerializeField] protected WeaponThrown weaponThrown;    
     [SerializeField] protected float attackDelay;
     [SerializeField] protected float camShakeIntensity;
@@ -21,20 +23,18 @@ public abstract class weaponScript : MonoBehaviour
 
     protected CameraShake playerCamShake;
     protected CameraShake slideCamShake;
-    private CinemachineVirtualCamera[] vCams; 
+    private CinemachineVirtualCamera[] vCams = new CinemachineVirtualCamera[2]; 
     private Camera cam;
     private Animator anim;
     private int moveDir;   
     private Vector2 mousePos;
     private Transform trans;
-    private float angle;
-    private SpriteRenderer weaponSprite;
+    private float angle; 
     private float attackCounter;
     private Vector2 lookDir;
 
     public virtual void Awake()
     {
-        weaponSprite = GetComponentInChildren<SpriteRenderer>();
         trans = GetComponent<Transform>();
         anim = trans.parent.GetComponentInChildren<Animator>();
         cam = Camera.main;

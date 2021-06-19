@@ -7,7 +7,7 @@ public class EnemyDeath : MonoBehaviour
 { 
     
     [HideInInspector] public int droppedGuns;
-    [HideInInspector] public int droppedHealth;
+     public int droppedHealth;
 
     private int probabilityWindow;
     private int totalScore;
@@ -17,16 +17,19 @@ public class EnemyDeath : MonoBehaviour
     private EnemySpawning spawning;
     private PlayerController player;
 
-    [SerializeField] protected List<Transform> availableWeapons;
+    [SerializeField] protected List<weaponScript> availableWeapons;
+    [SerializeField] protected WeaponPickup weaponPickup;
     [SerializeField] protected Transform healthPickup;
-    [SerializeField] protected Transform healthUpgrade;
+    [SerializeField] protected Transform healthUpgrade;    
+    [SerializeField] protected float comboResetTime;
+    [SerializeField] protected float weaponDropChance;
+    [SerializeField] protected float healthDropChance;
+
+    [Header("UI")]
     [SerializeField] protected TextMeshProUGUI scoreText;
     [SerializeField] protected TextMeshProUGUI comboText;
     [SerializeField] protected Animator scoreAnim;
     [SerializeField] protected Animator comboAnim;
-    [SerializeField] protected float comboResetTime;
-    [SerializeField] protected float weaponDropChance;
-    [SerializeField] protected float healthDropChance;
 
     private void Start()
     {
@@ -63,7 +66,11 @@ public class EnemyDeath : MonoBehaviour
         weaponDropProb();
         if (randomChance < probabilityWindow)
         {
-            Instantiate(availableWeapons[Random.Range(0, availableWeapons.Count)], enemyPos.position, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360))));
+            WeaponPickup instance = Instantiate(weaponPickup, enemyPos.position, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360))));
+            int randomVal = Random.Range(0, availableWeapons.Count);
+            weaponScript chosenWeapon = availableWeapons[randomVal];
+            instance.weapon = chosenWeapon;
+            instance.GetComponent<SpriteRenderer>().sprite = chosenWeapon.GetComponentInChildren<SpriteRenderer>().sprite;
             droppedGuns += 1;
         }
 
@@ -95,7 +102,10 @@ public class EnemyDeath : MonoBehaviour
     {
         totalScore += score * combo;
         scoreText.text = "Score:" + totalScore;
-        scoreAnim.SetTrigger("Score");
+        if (scoreAnim != null)
+        {
+            scoreAnim.SetTrigger("Score");
+        }        
     }
 
     private void Combo()

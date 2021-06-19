@@ -54,7 +54,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7199445701434608807}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 7199445701146198189}
+  weaponSprite: {fileID: 7199445701845419611}
   isAttacking: 0
   canAttack: 0
   throwWeapon: 0
@@ -86,8 +87,8 @@ MonoBehaviour:
   camShakeIntensity: 2
   camShakeTime: 0.5
   attackSpeed: 1000
-  attackDamage: 5
-  attackThrust: 5
+  attackDamage: 2
+  attackThrust: 3
   isAuto: 1
   bullet: {fileID: 6414633230038666850, guid: 97c296985eabccd4da60ad8161e6dec0, type: 3}
 --- !u!1 &7199445701845419609

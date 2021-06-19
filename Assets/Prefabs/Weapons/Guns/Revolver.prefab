@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 134828391196862349}
+  weaponSprite: {fileID: 134828391287284091}
   isAttacking: 0
   canAttack: 0
   throwWeapon: 0
@@ -56,7 +57,7 @@ MonoBehaviour:
   camShakeIntensity: 5
   camShakeTime: 0.3
   attackSpeed: 1250
-  attackDamage: 15
+  attackDamage: 10
   attackThrust: 10
   isAuto: 0
   bullet: {fileID: 6414633230038666850, guid: 97c296985eabccd4da60ad8161e6dec0, type: 3}

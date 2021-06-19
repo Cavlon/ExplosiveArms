@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private PlayerMovement movement;
     private BulletController bullet;
     private Rigidbody2D rb;
+    private bool invincible;
 
     void Awake()
     {
@@ -28,25 +29,38 @@ public class PlayerController : MonoBehaviour
         {
             movement.knockback = true;
             bullet = collision.gameObject.GetComponent<BulletController>();
-            health -= bullet.damage;
-            healthUI.UpdateHealth();
-            rb.AddForce(bullet.dir * bullet.thrust, ForceMode2D.Impulse);
-            Destroy(bullet.gameObject);
+            if (!invincible)
+            {
+                health -= bullet.damage;
+                healthUI.UpdateHealth();
+                rb.AddForce(bullet.dir * bullet.thrust, ForceMode2D.Impulse);
+                invincible = true;
+            }
             BulletController[] bullets = FindObjectsOfType<BulletController>();
             foreach(var bullet in bullets)
             {
                 Destroy(bullet.gameObject);
-            }
+            }           
+            Invoke("ResetInvincibility", 1f);
         }
         if (collision.CompareTag("Explosion"))
         {
             movement.knockback = true;
             Explosion explosion = collision.gameObject.GetComponent<Explosion>();
-            health -= 1;
-            healthUI.UpdateHealth();
+            if (!invincible)
+            {
+                health -= 1;
+                healthUI.UpdateHealth();
+                invincible = true;
+            }           
             Vector2 dir = transform.position - collision.gameObject.transform.position;
             dir = dir.normalized;
-            rb.AddForce(dir * explosion.thrust, ForceMode2D.Impulse);
+            rb.AddForce(dir * explosion.thrust, ForceMode2D.Impulse);        
+            Invoke("ResetInvincibility", 1f);
         }
+    }
+
+    void ResetInvincibility(){
+        invincible = false;
     }
 }

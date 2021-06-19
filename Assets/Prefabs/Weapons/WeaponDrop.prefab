@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8140461768229493493}
   - component: {fileID: 8140461768229493492}
   - component: {fileID: 8140461768229493451}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WeaponDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 304012941
   m_SortingLayer: 2
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 50fcba586ead74d42944d330048641d9, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_Size: {x: 1.6, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &8140461768229493492
@@ -98,7 +98,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.2144475, y: -0.0041868687}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.38750002, y: 0.52500004}
@@ -109,7 +109,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3564575, y: 0.33904052}
+  m_Size: {x: 1.5, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &8140461768229493451
 MonoBehaviour:
@@ -123,4 +123,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b21ad1e356cc742868dbc513923282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 7199445701434608800, guid: 612eb14e8216cc249b6ca70a1f4237a9, type: 3}
+  weapon: {fileID: 0}
+  sprite: {fileID: 0}
