@@ -31,6 +31,10 @@ public class DetectControlMethod : MonoBehaviour
         weapon.useController = useController;
         crosshair.useController = useController;
         vcam.useController = useController;
+        if (weapon == null)
+        {
+            GetWeapon();
+        }
     }
 
     public void GetWeapon()

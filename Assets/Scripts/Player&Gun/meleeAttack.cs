@@ -29,7 +29,6 @@ public class meleeAttack : weaponScript
         {
             if (enemy.CompareTag("Enemy"))
             {
-                print("oof");
                 EnemyController enemyCont = enemy.GetComponent<EnemyController>();
                 enemyCont.TakeDamage(attackDamage);
                 Vector2 dir = enemy.gameObject.transform.position - transform.position;

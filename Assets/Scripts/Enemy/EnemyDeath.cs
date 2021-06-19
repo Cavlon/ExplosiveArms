@@ -5,8 +5,7 @@ using TMPro;
 
 public class EnemyDeath : MonoBehaviour
 { 
-    public List<Transform> availableWeapons;
-
+    
     [HideInInspector] public int droppedGuns;
     [HideInInspector] public int droppedHealth;
 
@@ -18,7 +17,9 @@ public class EnemyDeath : MonoBehaviour
     private EnemySpawning spawning;
     private PlayerController player;
 
+    [SerializeField] protected List<Transform> availableWeapons;
     [SerializeField] protected Transform healthPickup;
+    [SerializeField] protected Transform healthUpgrade;
     [SerializeField] protected TextMeshProUGUI scoreText;
     [SerializeField] protected TextMeshProUGUI comboText;
     [SerializeField] protected Animator scoreAnim;
@@ -62,14 +63,18 @@ public class EnemyDeath : MonoBehaviour
         weaponDropProb();
         if (randomChance < probabilityWindow)
         {
-            Instantiate(availableWeapons[Random.Range(0, availableWeapons.Count)], enemyPos.position, Quaternion.Euler(new Vector3(0, 0, Random.Range(0f, 360f))));
+            Instantiate(availableWeapons[Random.Range(0, availableWeapons.Count)], enemyPos.position, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360))));
             droppedGuns += 1;
         }
 
         randomChance = Random.Range(0, 101);
-        if (randomChance < healthDropChance * 100 && player.health + droppedHealth < player.maxHealth)
+        if (randomChance < healthDropChance * 10)
         {
-
+            Instantiate(healthUpgrade, enemyPos.position, Quaternion.Euler(new Vector3(0, 0, Random.Range(0f, 360f))));
+        } else if (randomChance < healthDropChance * 100 && player.health + droppedHealth < player.maxHealth)
+        {
+            Instantiate(healthPickup, enemyPos.position, Quaternion.Euler(new Vector3(0, 0, Random.Range(0f, 360f))));
+            droppedHealth += 1;
         }
     }
 

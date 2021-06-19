@@ -29,7 +29,6 @@ public abstract class weaponScript : MonoBehaviour
     private Transform trans;
     private float angle;
     private SpriteRenderer weaponSprite;
-    private SpriteRenderer playerSprite;
     private float attackCounter;
     private Vector2 lookDir;
 
@@ -37,7 +36,6 @@ public abstract class weaponScript : MonoBehaviour
     {
         weaponSprite = GetComponentInChildren<SpriteRenderer>();
         trans = GetComponent<Transform>();
-        playerSprite = trans.parent.GetComponentInChildren<SpriteRenderer>();
         anim = trans.parent.GetComponentInChildren<Animator>();
         cam = Camera.main;
         vCams = FindObjectsOfType<CinemachineVirtualCamera>();
