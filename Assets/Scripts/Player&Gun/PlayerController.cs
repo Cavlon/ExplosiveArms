@@ -6,26 +6,20 @@ public class PlayerController : MonoBehaviour
 {
     public int health;
     public int maxHealth;
-    [SerializeField] protected HealthUI healthUI;
+    private HealthUI healthUI;
 
     private PlayerMovement movement;
     private BulletController bullet;
     private Rigidbody2D rb;
 
-    // Start is called before the first frame update
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         movement = GetComponent<PlayerMovement>();
+        healthUI = GameObject.Find("GameManager").GetComponent<HealthUI>();
         healthUI.playerCont = this;
         healthUI.getImages();
         healthUI.UpdateHealth();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void OnTriggerEnter2D(Collider2D collision)

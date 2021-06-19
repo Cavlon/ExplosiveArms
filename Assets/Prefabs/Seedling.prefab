@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d45cb54c2cd93541813294543154730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rage: 0
+  variable: 0
 --- !u!1 &4046935986954015622
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,14 +176,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8561120c39894e545b96cd7b0ba899b7, type: 3}
   - {fileID: 21300000, guid: 88ffba3d35188844991e6c76a051d736, type: 3}
   deathEffect: {fileID: 0}
+  rb: {fileID: 0}
   transTime: 0
   trans: {fileID: 0}
   playerTrans: {fileID: 0}
-  gun: {fileID: 0}
   hasGun: 0
   seeker: {fileID: 0}
   speed: 7
   score: 100
+  gun: {fileID: 0}
   rageDistance: 4
   rageTime: 2
   enrage: 0

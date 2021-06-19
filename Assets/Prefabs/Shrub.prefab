@@ -60,14 +60,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c1239c44ca5d1224f901fd7037be49b2, type: 3}
   - {fileID: 21300000, guid: e670e696b898436499b8a5fe0d36de6f, type: 3}
   deathEffect: {fileID: 3461372137515582714, guid: 26ac77af475cc5c44b30a809edbfb226, type: 3}
+  rb: {fileID: 0}
   transTime: 0
   trans: {fileID: 0}
   playerTrans: {fileID: 0}
-  gun: {fileID: 9184051800449525442}
   hasGun: 1
   seeker: {fileID: 0}
   speed: 4
   score: 200
+  gun: {fileID: 9184051800449525442}
   stoppingDistance: 5
   retreatDistance: 4
 --- !u!114 &1189657493985152400
@@ -310,6 +311,8 @@ MonoBehaviour:
   bulletSpeed: 500
   bulletDamage: 1
   bulletThrust: 10
+  trans: {fileID: 0}
+  shotDelay: 0
 --- !u!1 &9184051800463913210
 GameObject:
   m_ObjectHideFlags: 0

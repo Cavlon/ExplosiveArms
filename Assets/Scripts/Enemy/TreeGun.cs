@@ -70,6 +70,7 @@ public class TreeGun : EnemyGun
             newBullets[i].speed = bulletSpeed;
             newBullets[i].damage = bulletDamage;
             newBullets[i].thrust = bulletThrust;
+            newBullets[i].transform.localScale = new Vector2((float)1.25, (float)1.25);
             offset += 36;
         }
         shotDelay = initialShotDelay;

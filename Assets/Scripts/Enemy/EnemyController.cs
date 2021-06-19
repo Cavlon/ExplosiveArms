@@ -145,7 +145,6 @@ public class EnemyController : MonoBehaviour
             if (health <= 0)
             {
                 score = (int)(score * 1.5);
-                gameManager.deadEnemy(trans, score);
                 Destroy(gameObject);
             }
             Vector2 dir = transform.position - collision.gameObject.transform.position;
@@ -155,7 +154,9 @@ public class EnemyController : MonoBehaviour
 
     public virtual void OnDestroy()
     {
-        Instantiate(deathEffect, trans.position, Quaternion.identity);
+        gameManager.deadEnemy(trans, score);
+        EffectDestroy instance = Instantiate(deathEffect, trans.position, Quaternion.identity);
+        instance.transform.localScale = trans.localScale;
     }
 
     public void TakeDamage(float damage)
@@ -163,7 +164,6 @@ public class EnemyController : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            gameManager.deadEnemy(trans, score);
             Destroy(gameObject);
         }
     }

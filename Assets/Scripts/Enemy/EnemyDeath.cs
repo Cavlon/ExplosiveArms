@@ -4,24 +4,33 @@ using UnityEngine;
 using TMPro;
 
 public class EnemyDeath : MonoBehaviour
-{
-    public int droppedGuns;
-    public List<GameObject> availableWeapons = new List<GameObject>();
+{ 
+    public List<Transform> availableWeapons;
+
+    [HideInInspector] public int droppedGuns;
+    [HideInInspector] public int droppedHealth;
 
     private int probabilityWindow;
     private int totalScore;
     private int combo;
     private bool firstKill;
     private float lastKillTime;
+    private EnemySpawning spawning;
+    private PlayerController player;
 
+    [SerializeField] protected Transform healthPickup;
     [SerializeField] protected TextMeshProUGUI scoreText;
     [SerializeField] protected TextMeshProUGUI comboText;
     [SerializeField] protected Animator scoreAnim;
     [SerializeField] protected Animator comboAnim;
     [SerializeField] protected float comboResetTime;
+    [SerializeField] protected float weaponDropChance;
+    [SerializeField] protected float healthDropChance;
 
     private void Start()
     {
+        spawning = GetComponent<EnemySpawning>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         droppedGuns = 0;
         combo = 1;
         firstKill = true;
@@ -50,21 +59,28 @@ public class EnemyDeath : MonoBehaviour
     {
 
         int randomChance = Random.Range(0, 101);
+        weaponDropProb();
         if (randomChance < probabilityWindow)
         {
             Instantiate(availableWeapons[Random.Range(0, availableWeapons.Count)], enemyPos.position, Quaternion.Euler(new Vector3(0, 0, Random.Range(0f, 360f))));
             droppedGuns += 1;
         }
+
+        randomChance = Random.Range(0, 101);
+        if (randomChance < healthDropChance * 100 && player.health + droppedHealth < player.maxHealth)
+        {
+
+        }
     }
 
-    private void probability()
+    private void weaponDropProb()
     {
-        probabilityWindow = Mathf.RoundToInt((float)(100 * (0.6 / (droppedGuns + 1))));
+        probabilityWindow = Mathf.RoundToInt((float)(100 * (weaponDropChance / (droppedGuns + 1))));
     }
 
     public void deadEnemy(Transform enemyPos, int score)
     {
-        probability();
+        spawning.currentEnemies -= 1;
         Drop(enemyPos);
         AddScore(score);
         Combo();

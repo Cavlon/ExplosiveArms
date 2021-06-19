@@ -9,6 +9,7 @@ public class Seedling : EnemyController
     private AnimVariable rageChecker;
     [HideInInspector] public bool rage;
     [SerializeField] protected Explosion Explosion;
+    private bool enrageAnim;
 
     public void Awake()
     {
@@ -28,14 +29,17 @@ public class Seedling : EnemyController
             FindState();           
         } else
         {
-            anim.SetBool("Enrage", true);
+            if (!enrageAnim)
+            {
+                anim.SetTrigger("Enrage");
+                enrageAnim = true;
+            }           
             rage = rageChecker.variable;
         }
 
         if (rage)
         {
             enrage = false;
-            anim.SetBool("Enrage", false);
             anim.SetBool("Rage", true);
         }        
         Animate();
@@ -97,6 +101,7 @@ public class Seedling : EnemyController
 
     public override void OnDestroy()
     {
+        gameManager.deadEnemy(trans, score);
         Instantiate(Explosion, (Vector2)trans.position + Explosion.offset, Quaternion.identity);
     }   
 }

@@ -8,7 +8,7 @@ public class HealthUI : MonoBehaviour
 
     private int health;
     private int heartNum;   
-    public PlayerController playerCont;
+    [HideInInspector] public PlayerController playerCont;
 
     [SerializeField] protected Animator[] heartsAnim;
     private List<Image> heartsImage = new List<Image>();

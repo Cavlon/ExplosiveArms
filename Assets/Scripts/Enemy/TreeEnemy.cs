@@ -41,7 +41,6 @@ public class TreeEnemy : EnemyController
 
         if (!canSlam)
         {
-            print(time);
             if (startTimer == true)
             {
                 time = slamDelay;
@@ -99,11 +98,5 @@ public class TreeEnemy : EnemyController
             startTimer = true;
             anim.SetBool("canSlam", true);
         }
-    }
-
-    public override void OnDestroy()
-    {
-        EffectDestroy instance = Instantiate(deathEffect, trans.position, Quaternion.identity);
-        instance.transform.localScale = new Vector2(2, 2);
     }
 }

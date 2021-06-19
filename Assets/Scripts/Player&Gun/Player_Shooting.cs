@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Player_Shooting : MonoBehaviour
 {
-    [SerializeField] WeaponTimer timer;
+    private WeaponTimer timer;
     [SerializeField] meleeAttack melee;
     [HideInInspector] public weaponScript weapon;
     private CinemachineVirtualCamera slideCam;
@@ -13,10 +13,10 @@ public class Player_Shooting : MonoBehaviour
 
     void Awake()
     {
+        timer = GameObject.Find("GameManager").GetComponent<WeaponTimer>();
         GetGun();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if ((Input.GetButtonDown("Fire1") || Input.GetAxisRaw("Fire1") > 0.0f) & weapon.canAttack)
