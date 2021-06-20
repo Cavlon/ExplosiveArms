@@ -8,6 +8,7 @@ public class WeaponTimer : MonoBehaviour
 
     [SerializeField] protected Image fuse;
     [SerializeField] protected Image spark;
+    [SerializeField] protected Image warning;
     [SerializeField] protected Text timerText;
     [SerializeField] protected int timeLimit;
     [SerializeField] protected Explosion explosion;
@@ -15,7 +16,8 @@ public class WeaponTimer : MonoBehaviour
     [HideInInspector] public bool startTimer;
 
     public bool stopTimer;
-    private bool explode; 
+    private bool explode;
+
     private Vector3 sparkPos;
     private Vector3 initialSparkPos;
     private float time;
@@ -27,6 +29,7 @@ public class WeaponTimer : MonoBehaviour
     {
         spark.enabled = false;
         stopTimer = true;
+        warning.enabled = false;
         initialSparkPos = spark.rectTransform.anchoredPosition;     
         playerShooting = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Shooting>();
     }
@@ -49,7 +52,8 @@ public class WeaponTimer : MonoBehaviour
             Timer();
         } else
         {
-            spark.enabled = false;            
+            spark.enabled = false;
+            warning.enabled = false;
         } 
 
         if (explode && playerShooting.hasGun)
@@ -72,6 +76,14 @@ public class WeaponTimer : MonoBehaviour
         fuse.fillAmount = posTime;
         sparkPos.y = (posTime * 650) + 135;
         spark.rectTransform.anchoredPosition = sparkPos;
+
+        if (time <= 3)
+        {
+            warning.enabled = true;
+        } else
+        {
+            warning.enabled = false;
+        }
 
         if (time <= 0)
         {

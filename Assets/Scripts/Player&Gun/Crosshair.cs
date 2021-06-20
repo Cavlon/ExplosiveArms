@@ -34,8 +34,9 @@ public class Crosshair : MonoBehaviour
             if (pos.sqrMagnitude > 0.0f)
             {
                 sprite.enabled = true;
+                pos = pos.normalized;
                 Vector3 newPos = cam.WorldToScreenPoint(playertrans.position) + (pos * distance);
-                transform.position = new Vector3(Mathf.Clamp(newPos.x, 100, Screen.width - 100), Mathf.Clamp(newPos.y, 100, Screen.height - 100), 0);
+                transform.position = new Vector3(Mathf.Clamp(newPos.x, 100, Screen.width - 50), Mathf.Clamp(newPos.y, 100, Screen.height - 50), 0);
             } else
             {
                 sprite.enabled = false;
