@@ -21,6 +21,10 @@ public class DetectControlMethod : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (weapon == null)
+        {
+            GetWeapon();
+        }
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2) || Input.GetAxisRaw("Mouse X") != 0.0f || Input.GetAxisRaw("Mouse Y") != 0.0f)
         {
             useController = false;
@@ -31,10 +35,7 @@ public class DetectControlMethod : MonoBehaviour
         weapon.useController = useController;
         crosshair.useController = useController;
         vcam.useController = useController;
-        if (weapon == null)
-        {
-            GetWeapon();
-        }
+        
     }
 
     public void GetWeapon()

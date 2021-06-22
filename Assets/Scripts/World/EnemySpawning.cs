@@ -5,32 +5,38 @@ using UnityEngine;
 public class EnemySpawning : MonoBehaviour
 {
 
+    [HideInInspector] public int currentEnemies;
+    [HideInInspector] public bool levelComplete;
+
+    [SerializeField] protected Effect spawnEffect;
+
     private Transform[] enemies;
     private Vector3[] spawners;
     private int[] enemyAmounts;
-    private int waves;
-    [HideInInspector] public int currentEnemies;
+    private int waves;      
     private int waveSize;
-    private int totalEnemies;
-    public bool levelComplete;
+    private int totalEnemies;    
     private List<int> enemyAmountsList = new List<int>();
     private List<Transform> availableEnemies = new List<Transform>();
     private List<Vector3> availableSpawners = new List<Vector3>();
 
+    List<Vector3> randomSpawners = new List<Vector3>();
+    List<Transform> randomEnemies = new List<Transform>();
+
     void Update()
     {
-        if (waves == 0)
+        if (waves == 0 && currentEnemies == 0)
         {
             levelComplete = true;
         } else if (currentEnemies == 0 )
         {
             waves -= 1;
             currentEnemies = waveSize;
-            List<Vector3> randomSpawners = new List<Vector3>();
-            List<Transform> randomEnemies = new List<Transform>();
+            randomSpawners.Clear();
+            randomEnemies.Clear();
             for (int i = 0; i < waveSize; i++)
             {
-                int x = Random.Range(0, availableSpawners.Count);
+                int x = Random.Range(0, availableSpawners.Count);               
                 randomSpawners.Add(availableSpawners[x]);
                 availableSpawners.RemoveAt(x);
 
@@ -44,22 +50,19 @@ public class EnemySpawning : MonoBehaviour
                     enemyAmountsList.RemoveAt(y);
                     availableEnemies.RemoveAt(y);
                 }
+                Instantiate(spawnEffect, randomSpawners[i], Quaternion.identity);
             }
-            for (int i = 0; i < waveSize; i++)
-            {
-                Instantiate(randomEnemies[i], randomSpawners[i], Quaternion.identity);
-            }
-            ResetSpawners();
+            Invoke("SpawnEnemies", 1f);           
         }
         
     }
 
     public void LevelInfo(LevelInfo info)
     {
-        availableSpawners = info.spawners;
-        spawners = info.spawners.ToArray();
+        totalEnemies = 0;
+        spawners = info.spawners.ToArray();      
         enemyAmounts = info.enemyAmounts;
-        waves = info.waves;
+        waves = info.waves;        
         enemies = info.enemies;
         for (int i = 0; i < enemyAmounts.Length; i++)
         {
@@ -73,15 +76,25 @@ public class EnemySpawning : MonoBehaviour
                 enemyAmountsList.Add(enemyAmounts[i]);
                 availableEnemies.Add(enemies[i]);
             }
-        }        
+        }       
+        ResetSpawners();
     }
 
     void ResetSpawners()
     {
-        availableSpawners.Clear();
+        availableSpawners.Clear();      
         for (int i = 0; i < spawners.Length; i++)
         {
-            availableSpawners.Add(spawners[i]);
+            availableSpawners.Add(spawners[i]);         
         }
+    }
+
+    void SpawnEnemies()
+    {
+        for (int i = 0; i < waveSize; i++)
+        {
+            Instantiate(randomEnemies[i], randomSpawners[i], Quaternion.identity);
+        }
+        ResetSpawners();
     }
 }

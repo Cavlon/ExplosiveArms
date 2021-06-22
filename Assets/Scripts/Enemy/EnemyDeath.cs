@@ -7,7 +7,8 @@ public class EnemyDeath : MonoBehaviour
 { 
     
     [HideInInspector] public int droppedGuns;
-     public int droppedHealth;
+    [HideInInspector] public int droppedHealth;
+     public Transform level;
 
     private int probabilityWindow;
     private int totalScore;
@@ -20,7 +21,7 @@ public class EnemyDeath : MonoBehaviour
     [SerializeField] protected List<weaponScript> availableWeapons;
     [SerializeField] protected WeaponPickup weaponPickup;
     [SerializeField] protected Transform healthPickup;
-    [SerializeField] protected Transform healthUpgrade;    
+    [SerializeField] protected Transform healthUpgrade;
     [SerializeField] protected float comboResetTime;
     [SerializeField] protected float weaponDropChance;
     [SerializeField] protected float healthDropChance;
@@ -35,7 +36,6 @@ public class EnemyDeath : MonoBehaviour
     {
         spawning = GetComponent<EnemySpawning>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        droppedGuns = 0;
         combo = 1;
         firstKill = true;
         lastKillTime = 0;
@@ -44,6 +44,13 @@ public class EnemyDeath : MonoBehaviour
 
     private void Update()
     {
+        if (level == null)
+        {
+            level = GameObject.FindGameObjectWithTag("Level").transform;
+            droppedGuns = 0;
+            droppedHealth = 0;
+        }
+
         if (Time.time - lastKillTime > comboResetTime)
         {
             combo = 1;
@@ -66,7 +73,7 @@ public class EnemyDeath : MonoBehaviour
         weaponDropProb();
         if (randomChance < probabilityWindow)
         {
-            WeaponPickup instance = Instantiate(weaponPickup, enemyPos.position, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360))));
+            WeaponPickup instance = Instantiate(weaponPickup, enemyPos.position, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360))), level);
             int randomVal = Random.Range(0, availableWeapons.Count);
             weaponScript chosenWeapon = availableWeapons[randomVal];
             instance.weapon = chosenWeapon;
@@ -75,12 +82,12 @@ public class EnemyDeath : MonoBehaviour
         }
 
         randomChance = Random.Range(0, 101);
-        if (randomChance < healthDropChance * 10)
+        if (randomChance < healthDropChance * 10 && player.maxHealth < 15)
         {
-            Instantiate(healthUpgrade, enemyPos.position, Quaternion.Euler(new Vector3(0, 0, Random.Range(0f, 360f))));
+            Instantiate(healthUpgrade, enemyPos.position, Quaternion.Euler(new Vector3(0, 0, Random.Range(0f, 360f))), level);
         } else if (randomChance < healthDropChance * 100 && player.health + droppedHealth < player.maxHealth)
         {
-            Instantiate(healthPickup, enemyPos.position, Quaternion.Euler(new Vector3(0, 0, Random.Range(0f, 360f))));
+            Instantiate(healthPickup, enemyPos.position, Quaternion.Euler(new Vector3(0, 0, Random.Range(0f, 360f))), level);
             droppedHealth += 1;
         }
     }

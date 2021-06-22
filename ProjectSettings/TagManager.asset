@@ -10,6 +10,7 @@ TagManager:
   - FirePoint
   - Camera
   - Explosion
+  - Level
   layers:
   - Default
   - TransparentFX
