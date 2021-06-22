@@ -166,7 +166,7 @@ MonoBehaviour:
   firePoint: {fileID: 8164424478650436000}
   canShoot: 0
   initialShotDelay: 3
-  bulletSpeed: 150
+  bulletSpeed: 250
   bulletDamage: 1
   bulletThrust: 20
   trans: {fileID: 0}
@@ -353,7 +353,7 @@ MonoBehaviour:
   speed: 2
   score: 500
   gun: {fileID: 2214382928250035718}
-  slamDistance: 9
+  slamDistance: 11
   slam: 0
   endSlam: 0
   slamDelay: 1

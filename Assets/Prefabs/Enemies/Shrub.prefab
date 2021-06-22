@@ -308,7 +308,7 @@ MonoBehaviour:
   firePoint: {fileID: 1189657494212473188}
   canShoot: 0
   initialShotDelay: 1
-  bulletSpeed: 250
+  bulletSpeed: 350
   bulletDamage: 1
   bulletThrust: 10
   trans: {fileID: 0}

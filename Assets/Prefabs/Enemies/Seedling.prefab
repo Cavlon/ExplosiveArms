@@ -182,7 +182,7 @@ MonoBehaviour:
   playerTrans: {fileID: 0}
   hasGun: 0
   seeker: {fileID: 0}
-  speed: 7
+  speed: 8
   score: 100
   gun: {fileID: 0}
   rageDistance: 4
