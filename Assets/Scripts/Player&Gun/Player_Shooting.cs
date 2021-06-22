@@ -5,15 +5,18 @@ public class Player_Shooting : MonoBehaviour
 {
     private WeaponTimer timer;
     [SerializeField] meleeAttack melee;
-    [HideInInspector] public weaponScript weapon;
+     public weaponScript weapon;
     private CinemachineVirtualCamera slideCam;
     public bool hasGun;
-    private bool hasMelee;
+    public bool hasMelee;
     private meleeAttack meleeInstance;
 
     void Awake()
     {
         timer = GameObject.Find("GameManager").GetComponent<WeaponTimer>();
+        hasMelee = false;
+        hasMelee = true;
+        CreateMelee();
         GetGun();
     }
 
@@ -49,7 +52,7 @@ public class Player_Shooting : MonoBehaviour
         {
             slideCam.Priority = 0;
             if (!hasMelee)
-            {
+            {               
                 hasMelee = true;
                 CreateMelee();         
             }
@@ -61,7 +64,7 @@ public class Player_Shooting : MonoBehaviour
     }
 
     public void GetGun()
-    {
+    {       
         weapon = transform.GetComponentInChildren<weaponScript>();
         slideCam = weapon.slideCam;
         if (!hasMelee)

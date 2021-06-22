@@ -17,6 +17,11 @@ public class WeaponPickup : Pickup
     {
         if (collision.tag == "Player" & player.GetComponent<Player_Shooting>().hasGun == false)
         {
+            if (!actionDone)
+            {
+                Action();
+                actionDone = true;
+            }
             Destroy(gameObject);
         }
     }
