@@ -147,19 +147,15 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public virtual void OnDestroy()
-    {
-        gameManager.deadEnemy(trans, score);
-        EffectDestroy instance = Instantiate(deathEffect, trans.position, Quaternion.identity);
-        instance.transform.localScale = trans.localScale;
-    }
-
-    public void TakeDamage(float damage, double scoreMultiplier)
+    public virtual void TakeDamage(float damage, double scoreMultiplier)
     {
         health -= damage;
         if (health <= 0)
         {
             score = (int)(score * scoreMultiplier);
+            gameManager.deadEnemy(trans, score);
+            EffectDestroy instance = Instantiate(deathEffect, trans.position, Quaternion.identity);
+            instance.transform.localScale = trans.localScale;
             Destroy(gameObject);
         }
     }

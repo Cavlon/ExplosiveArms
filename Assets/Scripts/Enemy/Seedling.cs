@@ -95,13 +95,19 @@ public class Seedling : EnemyController
         base.OnTriggerEnter2D(collision);
         if (collision.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            TakeDamage(health, 1);
         }
     }
 
-    public override void OnDestroy()
+    public override void TakeDamage(float damage, double scoreMultiplier)
     {
-        gameManager.deadEnemy(trans, score);
-        Instantiate(Explosion, (Vector2)trans.position + Explosion.offset, Quaternion.identity);
-    }   
+        health -= damage;
+        if (health <= 0)
+        {
+            score = (int)(score * scoreMultiplier);
+            gameManager.deadEnemy(trans, score);
+            Instantiate(Explosion, (Vector2)trans.position + Explosion.offset, Quaternion.identity);
+            Destroy(gameObject);
+        }        
+    }
 }
