@@ -1032,7 +1032,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 0
-    m_SensorSize: {x: 1.2324841, y: 1}
+    m_SensorSize: {x: 1.3333334, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2538,6 +2538,11 @@ MonoBehaviour:
   - {fileID: 7902850463311170855, guid: a58f8e7c4c2a85d4a9c72c745fed7cb5, type: 3}
   - {fileID: 3961714161745370150, guid: 5c9a9586500876b4db96316cfee00a8a, type: 3}
   - {fileID: 8008745050758703963, guid: 7230fd709e4f229498dc83ad9eb992a9, type: 3}
+  - {fileID: 3725092806670369854, guid: eb5e89bba1204f043ac4d7e2a2066915, type: 3}
+  - {fileID: 1327181125774941310, guid: c573cb2df4445f348bf4848c4fe04de3, type: 3}
+  - {fileID: 4273089094065113157, guid: 02963012a0059b746ad576a671ec93ca, type: 3}
+  - {fileID: 8951256285249992655, guid: d1fc080d225a2c7429e884c08282a549, type: 3}
+  - {fileID: 2970179578663634054, guid: f27576f1a0fdcab449501064efb1dba3, type: 3}
 --- !u!1 &1238664580
 GameObject:
   m_ObjectHideFlags: 0
@@ -2585,7 +2590,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 0
-    m_SensorSize: {x: 1.2324841, y: 1}
+    m_SensorSize: {x: 1.3333334, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
