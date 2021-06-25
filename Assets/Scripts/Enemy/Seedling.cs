@@ -45,7 +45,7 @@ public class Seedling : EnemyController
         Animate();
     }
 
-    private void FindState()
+    public override void FindState()
     {
         if (CanSeePlayerCollision(trans) && currentStateS != "Chase")
         {

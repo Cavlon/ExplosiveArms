@@ -348,15 +348,15 @@ MonoBehaviour:
   transTime: 0
   trans: {fileID: 0}
   playerTrans: {fileID: 0}
-  hasGun: 0
   seeker: {fileID: 0}
+  gun: {fileID: 2214382928250035718}
+  hasGun: 1
   speed: 2
   score: 500
-  gun: {fileID: 2214382928250035718}
   slamDistance: 11
   slam: 0
   endSlam: 0
-  slamDelay: 1
+  slamDelay: 1.5
   canSlam: 0
 --- !u!114 &8164424478873433428
 MonoBehaviour:

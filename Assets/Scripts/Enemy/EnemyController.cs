@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public abstract class EnemyController : MonoBehaviour
 {
     
     
@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] protected float health;    
     [SerializeField] protected Sprite[] sprites;
     [SerializeField] protected EffectDestroy deathEffect;
+    
 
     protected State currentState;
     protected string currentStateS;  
@@ -20,19 +21,19 @@ public class EnemyController : MonoBehaviour
     protected Vector3 lastPosition;
     protected SpriteRenderer spriteRender;   
     protected Vector3 dir;
-    protected BulletController bullet;   
-    protected Animator anim;
-
+    protected BulletController bullet; 
+    
+    [HideInInspector] public Animator anim;
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public int transTime;
     [HideInInspector] public Transform trans;
-    [HideInInspector] public Transform playerTrans;   
-    [HideInInspector] public bool hasGun;
+    [HideInInspector] public Transform playerTrans;       
     [HideInInspector] public Seeker seeker;
+    [HideInInspector] public EnemyGun gun;
 
+    public bool hasGun;
     public float speed;
-    public int score;
-    public EnemyGun gun;
+    public int score;   
 
     private GameObject player;       
     private BoxCollider2D colliderComponent;
@@ -159,4 +160,6 @@ public class EnemyController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public abstract void FindState();
 }

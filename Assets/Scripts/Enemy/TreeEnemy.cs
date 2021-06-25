@@ -7,10 +7,9 @@ public class TreeEnemy : EnemyController
     [HideInInspector] public bool slam;
     [HideInInspector] public bool endSlam;
     private AnimVariable slamChecker;
-    [SerializeField] protected int slamDelay;
-    private float time;
-    private bool startTimer;
+    [SerializeField] protected double slamDelay;
     [HideInInspector] public bool canSlam;
+    private bool startTimer;
 
     public void Awake()
     {
@@ -19,36 +18,21 @@ public class TreeEnemy : EnemyController
         currentStateS = "Attack";
         slamChecker = GetComponentInChildren<AnimVariable>();
         canSlam = true;
-        startTimer = true;
+        startTimer = false;
     }
 
     void Update()
     {
-
-        //Debug.Log(canSlam);
-        
-
         if (!slam)
         {
             currentState.Tick();
             FindState();
         } else
         {
-            anim.SetTrigger("Slam");
-            
+            anim.SetTrigger("Slam");           
             endSlam = slamChecker.variable;
+            startTimer = true;
         }
-
-        if (!canSlam)
-        {
-            if (startTimer == true)
-            {
-                time = slamDelay;
-                startTimer = false;
-            }
-            Timer();
-        }
-        
         
         Animate();
 
@@ -57,11 +41,15 @@ public class TreeEnemy : EnemyController
             anim.SetBool("canSlam", false);
             slam = false;
             canSlam = false;
-            
+            if (startTimer)
+            {
+                Invoke("Timer", (float)slamDelay);
+                startTimer = false;
+            }           
         }
     }
 
-    private void FindState()
+    public override void FindState()
     {
         if (CanSeePlayerCollision(trans) && currentStateS != "Attack")
         {
@@ -86,17 +74,8 @@ public class TreeEnemy : EnemyController
 
     private void Timer()
     {
-        time -= Time.deltaTime;
-
-        
-
-        if (Mathf.CeilToInt(time) == 0)
-        {
-            //print(time);
-            endSlam = false;
-            canSlam = true;
-            startTimer = true;
-            anim.SetBool("canSlam", true);
-        }
+        endSlam = false;
+        canSlam = true;
+        anim.SetBool("canSlam", true);
     }
 }

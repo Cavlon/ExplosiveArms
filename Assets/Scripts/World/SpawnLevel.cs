@@ -3,27 +3,32 @@ using UnityEngine;
 
 public class SpawnLevel : MonoBehaviour
 {
-
+    [SerializeField] int levelRequirement;
     public List<LevelInfo> levels = new List<LevelInfo>();
+    public LevelInfo bossLevel;
     private int levelNo;
+    private Transform player;
 
     void Start()
     {
         levelNo = 0;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         NewLevel();
     }
 
 
     public void NewLevel()
     {
-        if (levelNo < 9)
+        if (levelNo < levelRequirement)
         {
             NormalLevel();
             levelNo += 1;
         }
         else
         {
-            print("Boss Level Here");
+            player.position = new Vector2(0, -15);
+            Instantiate(bossLevel);
+            GetComponent<EnemySpawning>().boss = true;
         }  
         Invoke("ReScan", 1f);
     }

@@ -7,6 +7,7 @@ public class EnemySpawning : MonoBehaviour
 
     [HideInInspector] public int currentEnemies;
     [HideInInspector] public bool levelComplete;
+    [HideInInspector] public bool boss;
 
     [SerializeField] protected Effect spawnEffect;
 
@@ -18,17 +19,18 @@ public class EnemySpawning : MonoBehaviour
     private int totalEnemies;    
     private List<int> enemyAmountsList = new List<int>();
     private List<Transform> availableEnemies = new List<Transform>();
-    private List<Vector3> availableSpawners = new List<Vector3>();
+    private List<Vector3> availableSpawners = new List<Vector3>();   
 
     List<Vector3> randomSpawners = new List<Vector3>();
     List<Transform> randomEnemies = new List<Transform>();
 
     void Update()
     {
-        if (waves == 0 && currentEnemies == 0)
+        if (waves == 0 && currentEnemies <= 0 && !boss)
         {
             levelComplete = true;
-        } else if (currentEnemies == 0 )
+
+        } else if (currentEnemies == 0 && waves != 0)
         {
             waves -= 1;
             currentEnemies = waveSize;
