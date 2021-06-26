@@ -82,7 +82,7 @@ public class EnemyDeath : MonoBehaviour
         }
 
         randomChance = Random.Range(0, 101);
-        if (randomChance < healthDropChance * 10 && player.maxHealth < 15)
+        if (randomChance < healthDropChance * 5 && player.maxHealth < 15)
         {
             Instantiate(healthUpgrade, enemyPos.position, Quaternion.Euler(new Vector3(0, 0, Random.Range(0f, 360f))), level);
         } else if (randomChance < healthDropChance * 100 && player.health + droppedHealth < player.maxHealth)

@@ -29,7 +29,6 @@ public class EnemySpawning : MonoBehaviour
         if (waves == 0 && currentEnemies <= 0 && !boss)
         {
             levelComplete = true;
-            print("oof");
         } else if (currentEnemies <= 0 && waves != 0)
         {
             waves -= 1;
