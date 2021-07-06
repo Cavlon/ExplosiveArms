@@ -23,6 +23,7 @@ public class EnemySpawning : MonoBehaviour
 
     List<Vector3> randomSpawners = new List<Vector3>();
     List<Transform> randomEnemies = new List<Transform>();
+    LevelInfo currentLevel;
 
     void Update()
     {
@@ -65,6 +66,7 @@ public class EnemySpawning : MonoBehaviour
         enemyAmounts = info.enemyAmounts;
         waves = info.waves;        
         enemies = info.enemies;
+        currentLevel = info;
         for (int i = 0; i < enemyAmounts.Length; i++)
         {
             totalEnemies += enemyAmounts[i];
@@ -94,7 +96,7 @@ public class EnemySpawning : MonoBehaviour
     {
         for (int i = 0; i < waveSize; i++)
         {
-            Instantiate(randomEnemies[i], randomSpawners[i], Quaternion.identity);
+            Instantiate(randomEnemies[i], randomSpawners[i], Quaternion.identity, currentLevel.transform);
         }
         ResetSpawners();
     }

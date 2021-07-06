@@ -8,10 +8,11 @@ public class EnemyDeath : MonoBehaviour
     
     [HideInInspector] public int droppedGuns;
     [HideInInspector] public int droppedHealth;
-     public Transform level;
+    [HideInInspector] public bool gameOver;
+    [HideInInspector] public Transform level;
+    [HideInInspector] public int totalScore;
 
-    private int probabilityWindow;
-    private int totalScore;
+    private int probabilityWindow;   
     private int combo;
     private bool firstKill;
     private float lastKillTime;
@@ -44,7 +45,7 @@ public class EnemyDeath : MonoBehaviour
 
     private void Update()
     {
-        if (level == null)
+        if (level == null && !gameOver)
         {
             level = GameObject.FindGameObjectWithTag("Level").transform;
             droppedGuns = 0;

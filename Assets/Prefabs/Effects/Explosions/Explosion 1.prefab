@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: Explosion 1
   animator: {fileID: 0}
-  delay: -0.3
+  delay: -0.4
   damage: 12
   thrust: 20
   offset: {x: 0, y: 0}

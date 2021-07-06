@@ -8,6 +8,7 @@ public class DetectControlMethod : MonoBehaviour
     private weaponScript weapon;
     private Crosshair crosshair;
     private CameraFollow vcam;
+    [HideInInspector] public bool gameOver;
     public bool useController;
 
     // Start is called before the first frame update
@@ -16,6 +17,7 @@ public class DetectControlMethod : MonoBehaviour
         GetWeapon();
         crosshair = GameObject.Find("Crosshair").GetComponent<Crosshair>();
         vcam = GameObject.Find("vcamFollow").GetComponent<CameraFollow>();
+        gameOver = false;
     }
 
     // Update is called once per frame
@@ -32,10 +34,12 @@ public class DetectControlMethod : MonoBehaviour
         {
             useController = true;
         }
-        weapon.useController = useController;
-        crosshair.useController = useController;
-        vcam.useController = useController;
-        
+        if (!gameOver)
+        {
+            weapon.useController = useController;
+            crosshair.useController = useController;
+            vcam.useController = useController;
+        }   
     }
 
     public void GetWeapon()

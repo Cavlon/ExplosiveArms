@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [HideInInspector] public bool gameOver;
 
     [SerializeField] protected float movementBaseSpeed;
     [SerializeField] protected float destroyTime;
@@ -68,10 +69,13 @@ public class PlayerMovement : MonoBehaviour
 
     void ProcessInputs()
     {
-        movementDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        movementDirRaw = movementDir;
-        movementSpeed = Mathf.Clamp(movementDir.magnitude, 0f, 1f);
-        movementDir.Normalize();
+        if (!gameOver)
+        {
+            movementDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            movementDirRaw = movementDir;
+            movementSpeed = Mathf.Clamp(movementDir.magnitude, 0f, 1f);
+            movementDir.Normalize();
+        }      
     }
 
     void Move()
@@ -152,5 +156,10 @@ public class PlayerMovement : MonoBehaviour
             canKnock = true;
             knockback = false;
         }
+    }
+
+    public void Stop()
+    {
+        rb.velocity = new Vector2(0, 0);
     }
 }

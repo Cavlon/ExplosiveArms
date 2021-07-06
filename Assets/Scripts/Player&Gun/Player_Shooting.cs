@@ -22,12 +22,12 @@ public class Player_Shooting : MonoBehaviour
 
     void Update()
     {
-        if ((Input.GetButtonDown("Fire1") || Input.GetAxisRaw("Fire1") > 0.0f) & weapon.canAttack)
+        if ((Input.GetButtonDown("Attack") || Input.GetAxisRaw("Attack") > 0.0f) & weapon.canAttack && !PauseGame.paused)
         {
             weapon.isAttacking = true;
         }
 
-        if (Input.GetButtonUp("Fire1") || Input.GetAxisRaw("Fire1") == 0.0f)
+        if (Input.GetButtonUp("Attack") || Input.GetAxisRaw("Attack") == 0.0f && !PauseGame.paused)
         {
             weapon.isAttacking = false;
             weapon.canAttack = true;
@@ -37,7 +37,7 @@ public class Player_Shooting : MonoBehaviour
         {
             hasMelee = false;           
 
-            if (Input.GetButtonDown("Throw"))
+            if (Input.GetButtonDown("Throw") && !PauseGame.paused)
             {
                 weapon.throwWeapon = true;
                 hasGun = false;

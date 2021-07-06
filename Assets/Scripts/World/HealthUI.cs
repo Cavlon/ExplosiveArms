@@ -12,6 +12,12 @@ public class HealthUI : MonoBehaviour
 
     [SerializeField] protected Animator[] heartsAnim;
     private List<Image> heartsImage = new List<Image>();
+    private GameOver gameOver;
+
+    private void Start()
+    {
+        gameOver = GetComponent<GameOver>();
+    }
 
     public void UpdateHealth()
     {
@@ -36,6 +42,10 @@ public class HealthUI : MonoBehaviour
             {
                 heartsImage[i].enabled = false;
             }
+        }
+        if (health == 0)
+        {
+            gameOver.EndGame(true);
         }
     }
 

@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class OptionsAnimation : MonoBehaviour
+public class OptionsMenu : MonoBehaviour
 {
     [SerializeField] protected Animator animator;
 

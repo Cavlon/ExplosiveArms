@@ -37,6 +37,7 @@ public abstract class EnemyController : MonoBehaviour
 
     private GameObject player;       
     private BoxCollider2D colliderComponent;
+    private bool dead;
 
     public void GetVariables()
     {
@@ -50,6 +51,7 @@ public abstract class EnemyController : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         gameManager = GameObject.Find("GameManager").GetComponent<EnemyDeath>();
         rb = GetComponent<Rigidbody2D>();
+        dead = false;
         if (hasGun)
         {
             gun = GetComponentInChildren<EnemyGun>();
@@ -151,8 +153,9 @@ public abstract class EnemyController : MonoBehaviour
     public virtual void TakeDamage(float damage, double scoreMultiplier)
     {
         health -= damage;
-        if (health <= 0)
+        if (health <= 0 && !dead)
         {
+            dead = true;
             score = (int)(score * scoreMultiplier);
             gameManager.deadEnemy(trans, score);
             EffectDestroy instance = Instantiate(deathEffect, trans.position, Quaternion.identity);

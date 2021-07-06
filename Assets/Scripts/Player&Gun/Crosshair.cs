@@ -9,6 +9,8 @@ public class Crosshair : MonoBehaviour
     private Image sprite;
     private Camera cam;
     private Transform playertrans;
+    private bool gameOver;
+    private DetectControlMethod control;
     [SerializeField] protected float distance;
 
 
@@ -18,6 +20,7 @@ public class Crosshair : MonoBehaviour
         playertrans = GameObject.FindGameObjectWithTag("Player").transform;
         cam = Camera.main;
         sprite = GetComponent<Image>();
+        control = FindObjectOfType<DetectControlMethod>();
         Cursor.visible = false;
     }
 
@@ -42,7 +45,8 @@ public class Crosshair : MonoBehaviour
                 sprite.enabled = false;
             }
         }
-        if (Cursor.visible == true)
+        gameOver = control.gameOver;
+        if (Cursor.visible == true && !gameOver)
         {
             Cursor.visible = false;
         }

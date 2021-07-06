@@ -31,10 +31,8 @@ public class PlayerController : MonoBehaviour
             bullet = collision.gameObject.GetComponent<BulletController>();
             if (!invincible)
             {
-                health -= bullet.damage;
-                healthUI.UpdateHealth();
+                Damage();
                 rb.AddForce(bullet.dir * bullet.thrust, ForceMode2D.Impulse);
-                invincible = true;
             }
             BulletController[] bullets = FindObjectsOfType<BulletController>();
             foreach(var bullet in bullets)
@@ -49,9 +47,7 @@ public class PlayerController : MonoBehaviour
             Explosion explosion = collision.gameObject.GetComponent<Explosion>();
             if (!invincible)
             {
-                health -= 1;
-                healthUI.UpdateHealth();
-                invincible = true;
+                Damage();
             }           
             Vector2 dir = transform.position - collision.gameObject.transform.position;
             dir = dir.normalized;
@@ -62,5 +58,12 @@ public class PlayerController : MonoBehaviour
 
     void ResetInvincibility(){
         invincible = false;
+    }
+
+    void Damage()
+    {
+        health -= 1;
+        healthUI.UpdateHealth();
+        invincible = true;
     }
 }
