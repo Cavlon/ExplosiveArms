@@ -14,6 +14,7 @@ public class TreeBossSummon : MonoBehaviour
     private Vector2 spawnPos;
     private Effect spawnWarning;
     private Animator anim;
+    private Transform level;
 
     public void Update()
     {
@@ -41,6 +42,7 @@ public class TreeBossSummon : MonoBehaviour
     public void Awake()
     {
         enemy = GetComponent<TreeBoss>();
+        level = transform.parent;
         counter = enemy.summonAmount;
         destroyCounter = enemy.summonAmount;
         summons = enemy.enemies;
@@ -57,7 +59,7 @@ public class TreeBossSummon : MonoBehaviour
     private IEnumerator SpawnEnemy(Vector2 pos)
     {
         yield return new WaitForSeconds(1f);
-        Instantiate(summons[Random.Range(0, 2)], pos, Quaternion.identity);
+        Instantiate(summons[Random.Range(0, 2)], pos, Quaternion.identity, level);
         destroyCounter -= 1;
     }
 }

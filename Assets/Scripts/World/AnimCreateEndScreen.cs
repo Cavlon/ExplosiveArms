@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimCreateOptions : MonoBehaviour
+public class AnimCreateEndScreen : MonoBehaviour
 {
 
     public bool animVariable;
 
-    private CreateOptions createOptions;
+    private CreateEndScreen createEnd;
 
     private void Awake()
     {
-        createOptions = transform.parent.GetComponent<CreateOptions>();
+        createEnd = transform.parent.GetComponent<CreateEndScreen>();
     }
 
     void Update()
     {
         if (animVariable)
         {
-            createOptions.SpawnOptions();
+            createEnd.SpawnOptions();
             animVariable = false;
         }
     }

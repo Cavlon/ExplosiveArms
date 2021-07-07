@@ -3,36 +3,47 @@ using UnityEngine;
 
 public class SpawnLevel : MonoBehaviour
 {
-    [SerializeField] int levelRequirement;
-    [SerializeField] Effect spawnEffect;
+    [HideInInspector] public Transform player;
+
     public List<LevelInfo> levels = new List<LevelInfo>();
     public LevelInfo bossLevel;
     public int levelNo;
-    [HideInInspector] public Transform player;
+
+    [SerializeField] int levelRequirement;
+    [SerializeField] Effect spawnEffect;
+   
     private PlayerMovement playerMove;
     private LevelInfo currentLevel;
+    private GameOver gameOver;
+    private bool boss;
 
     void Start()
     {
         levelNo = 0;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerMove = player.GetComponent<PlayerMovement>();
+        gameOver = GetComponent<GameOver>();
         NewLevel();
     }
 
 
     public void NewLevel()
     {
-        if (levelNo < levelRequirement)
+        if (levelNo < levelRequirement && !boss)
         {
             NormalLevel();
             levelNo += 1;
         }
-        else
+        else if (!boss)
         {
             player.position = new Vector2(0, -15);
             currentLevel = Instantiate(bossLevel);
             GetComponent<EnemySpawning>().boss = true;
+            boss = true;
+        } else
+        {
+            gameOver.EndGame(false);
+            boss = false;
         }
         playerMove.Stop();
         playerMove.knockback = true;

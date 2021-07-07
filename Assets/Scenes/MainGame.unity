@@ -3047,8 +3047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25ce5dc8242fa9f4ab4374e7c196f10e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelRequirement: 10
-  spawnEffect: {fileID: 2069171375404324888, guid: b1bb653906ea5344abf356d244b6a09d, type: 3}
+  player: {fileID: 0}
   levels:
   - {fileID: 192894555597649651, guid: 9a56dba82516329408fff39e3588fcf5, type: 3}
   - {fileID: 7151141834266623751, guid: a57667d750840d54993eceb06cff9fa2, type: 3}
@@ -3072,7 +3071,8 @@ MonoBehaviour:
   - {fileID: 4697787640426042133, guid: bc52aa8400c57a9408937bf73125f472, type: 3}
   bossLevel: {fileID: 961688716712850498, guid: 01f5330bd269a1143998cc34cc1c9f9d, type: 3}
   levelNo: 0
-  player: {fileID: 0}
+  levelRequirement: 10
+  spawnEffect: {fileID: 2069171375404324888, guid: b1bb653906ea5344abf356d244b6a09d, type: 3}
 --- !u!114 &1167334872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3099,7 +3099,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deadCanvas: {fileID: 3289523859596622064, guid: b3360865ab8d29b4ab83dd0852b0e1de, type: 3}
-  winCanvas: {fileID: 0}
+  winCanvas: {fileID: 8751773497586926378, guid: 8d3ac6f6bef0f024694fda2179f2068d, type: 3}
   mainCanvas: {fileID: 530038914}
   deathEffect: {fileID: 2025574392073232553, guid: 4060d34eeea0c874c98028fd86fa6b1a, type: 3}
 --- !u!114 &1167334874

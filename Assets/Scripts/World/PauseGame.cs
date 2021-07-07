@@ -6,18 +6,20 @@ public class PauseGame : MonoBehaviour
 {
 
     public static bool paused;
+    public static bool gameOver;
 
     [SerializeField] private Animator pauseAnim;
 
 
     private void Start()
     {
+        gameOver = false;
         paused = false;
     }
 
     void Update()
     {
-        if (Input.GetButtonDown("Pause"))
+        if (Input.GetButtonDown("Pause") && !gameOver)
         {
             paused = !paused;
             Pause();

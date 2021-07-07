@@ -25,7 +25,7 @@ public class LoadIntroData : MonoBehaviour
             if (data.beatenGame)
             {
                 highscoreText.enabled = true;
-                highscoreText.text = data.highscore.ToString();
+                highscoreText.text = "Highscore:" + data.highscore;
             }
             Destroy(this);
         }

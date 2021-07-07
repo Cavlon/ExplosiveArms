@@ -75,7 +75,10 @@ public class PlayerMovement : MonoBehaviour
             movementDirRaw = movementDir;
             movementSpeed = Mathf.Clamp(movementDir.magnitude, 0f, 1f);
             movementDir.Normalize();
-        }      
+        } else
+        {
+            rb.velocity = Vector2.zero;
+        }     
     }
 
     void Move()
